@@ -24,6 +24,6 @@
         <div id="gif-wrapper" style="width:100%; height:45px; margin-bottom:5px; display:none;">
             <img id="gif-item" src="http://localhost/tasks-online/public/assets/images/2.gif" width="45" style="margin:auto; display:block;">
         </div>
-        <p id="register-success-text" class="success-message" style="display: none; font-weight:normal; font-size:17px !important;"></p>
+        <p id="register-success-text" style="display: none; font-weight:normal; font-size:17px !important;"></p>
     </form>
 </div>

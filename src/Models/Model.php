@@ -113,7 +113,7 @@ abstract class Model
         }
         catch(\PDOException $ex)
         {
-            $this->fail = $ex;
+            var_dump($ex);exit;
             return null;
         }
     }

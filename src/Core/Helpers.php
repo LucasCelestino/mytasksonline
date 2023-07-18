@@ -50,4 +50,14 @@ class Helpers
     {
         move_uploaded_file($path, IMAGES_PATH."/".$fileName);
     }
+
+    public static function verifyPassword($password, $confirmedPassword)
+    {
+        return $password == $confirmedPassword ? true : false;
+    }
+
+    public static function verifyPasswordLength($password)
+    {
+        return strlen($password) > 5 ? true : false;
+    }
 }

@@ -18,14 +18,18 @@ class UserModel extends Model
      * @param String $name
      * @param String $email
      * @param String $password
+     * @param String $slug
+     * @param String $pictureUrl
      *
      * @return UserModel
      */
-    public function bootstrap(String $name, String $email, String $password): UserModel
+    public function bootstrap(String $name, String $email, String $password, String $slug, String $pictureUrl = null): UserModel
     {
         $this->name = $name;
         $this->email = $email;
         $this->password = $password;
+        $this->slug = $slug;
+        $this->picture_url = $pictureUrl;
         return $this;
     }
 
@@ -119,11 +123,11 @@ class UserModel extends Model
         {
             if($this->find($this->email))
             {
-                return null;
+                return 1;
             }
             else
             {
-                $userId = $this->create("INSERT INTO ".self::$entity." (name,email,password) VALUES (:name,:email,:password)", $this->safe());
+                $userId = $this->create("INSERT INTO ".self::$entity." (name,email,password,picture_url,slug) VALUES (:name,:email,:password,:picture_url,:slug)", $this->safe());
             }
         }
 
