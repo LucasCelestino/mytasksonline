@@ -1,0 +1,15 @@
+.welcome-wrapper p:first-child
+{
+    font-size: 19px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #6200EA;
+
+}
+
+.welcome-wrapper p
+{
+    color: #505050;
+    font-size: 13px;
+    margin-bottom: 15px;
+}

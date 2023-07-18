@@ -1,0 +1,146 @@
+.profile-wrapper
+{
+    padding: 10px 0;
+}
+
+.profile-wrapper .img
+{
+    width: 150px;
+    height: 150px;
+    background-color: red;
+    background-size: cover;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.profile-wrapper .header
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #6200EA;
+}
+
+.profile-wrapper .header .nivel
+{
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.profile-wrapper .header .follows
+{
+    display: flex;
+    font-size: 15px;
+}
+
+.profile-wrapper .header .follows .followers, .profile-wrapper .header .follows .following
+{
+    margin-right: 20px;
+    display: flex;
+}
+
+.profile-wrapper .header .follows .followers p, .profile-wrapper .header .follows .following p
+{
+    font-weight: bold;
+    margin-left: 2px;
+}
+
+.profile-wrapper .content
+{
+    display: flex;
+}
+
+.profile-wrapper .content .tasks
+{
+    width: 50%;
+    padding: 15px 0;
+    text-align: center;
+}
+
+
+.profile-wrapper .content .tasks h2
+{
+    margin-bottom: 20px;
+    color: #6200EA;
+    font-weight: bold;
+}
+
+.profile-wrapper .content .notes h2
+{
+    margin-bottom: 20px;
+    color: #6200EA;
+    font-weight: bold;
+}
+
+.profile-wrapper .content .tasks .wrapper .item
+{
+    display: flex;
+    flex-direction: column;
+    font-size: 13px;
+    align-items: center;
+}
+
+.profile-wrapper .content .tasks .wrapper .item p:first-child
+{
+    margin-bottom: 5px;
+    color: #6200EA;
+}
+
+.profile-wrapper .content .tasks .wrapper .item p:last-child
+{
+    width: 150px;
+    color: #FFF;
+}
+
+.profile-wrapper .content .notes
+{
+    width: 50%;
+    padding: 15px 0;
+    text-align: center;
+}
+
+.profile-wrapper .content .notes .wrapper .item
+{
+    display: flex;
+    flex-direction: column;
+    font-size: 13px;
+    align-items: center;
+}
+
+.profile-wrapper .content .notes .wrapper .item p:first-child
+{
+    margin-bottom: 5px;
+    color: #6200EA;
+}
+
+.profile-wrapper .content .notes .wrapper .item p:last-child
+{
+    background-color: rgb(199, 199, 199);
+    width: 200px;
+    padding: 3px 5px;
+    border-radius: 10px;
+    color: #FFF;
+    text-align: center;
+}
+
+.profile-wrapper .content .notes .wrapper .item
+{
+    margin-bottom: 10px;
+}
+
+.profile-wrapper .content .notes .wrapper a
+{
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.profile-wrapper .content .tasks .wrapper .item
+{
+    margin-bottom: 10px;
+}
+
+.profile-wrapper .content .tasks .wrapper a
+{
+    text-decoration: none;
+    font-size: 13px;
+}

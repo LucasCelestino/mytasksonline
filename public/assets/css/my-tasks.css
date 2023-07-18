@@ -1,0 +1,79 @@
+.tasks-status-wrapper
+{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 15px;
+}
+
+.tasks-status-wrapper .completed, .progress, .deleted
+{
+    padding: 5px 10px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    margin-right: 5px;
+}
+
+.tasks-status-wrapper .completed
+{
+    background-color: #3baf79;
+    font-size: 13px;
+    text-align: center !important;
+    display: flex;
+    justify-content: center;
+    color: #FFF;
+}
+
+.tasks-status-wrapper .progress
+{
+    background-color: #d88200;
+    color: #FFF;
+    font-size: 13px;
+    text-align: center !important;
+    display: flex;
+    justify-content: center;
+}
+
+.tasks-status-wrapper .deleted
+{
+    background-color: #d82b00;
+    color: #FFF;
+    font-size: 13px;
+    text-align: center !important;
+    display: flex;
+    justify-content: center;
+}
+
+.tasks-status-wrapper .status
+{
+    display: flex;
+}
+
+.available-tasks
+{
+    font-size: 14px;
+    display: flex;
+    font-weight: bold;
+    color: #6200EA;
+    align-items: center;
+}
+
+.category-item p
+{
+    font-size: 10px;
+}
+
+.tasks-wrapper .item .title p:first-child
+{
+    margin-bottom: 5px !important;
+}
+
+.tasks-wrapper .item .title .dates
+{
+    margin-top: -5px;
+}
+
+.tasks-wrapper .item .actions a
+{
+    color: #FFF;
+}

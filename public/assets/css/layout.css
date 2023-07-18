@@ -1,0 +1,49 @@
+.body-container
+{
+    background-color: #6200EA;
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    align-items: center;
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.main-container-content
+{
+    height:600px;
+    display: flex;
+    flex-direction:column;
+    align-items:center;
+    max-width: 800px;
+    width: 100%;
+}
+
+.content-wrapper-home
+{
+    background-color: #FFF;
+    max-width: 800px;
+    width: 100%;
+    padding-top: 15px;
+    border-radius: 5px;
+}
+
+.add-task-wrapper
+{
+    margin-bottom:10px;
+    display:flex;
+    align-items:center;
+    max-width: 800px;
+    width: 100%;
+}
+
+.btn-task
+{
+    border: none;
+    padding: 10px 10px;
+    border-radius: 5px;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #3baf79;
+    color: #FFF;
+    cursor: pointer;
+}
