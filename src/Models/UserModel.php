@@ -87,7 +87,7 @@ class UserModel extends Model
     /**
      * @return UserModel|null
      */
-    public function save(): ?UserModel
+    public function save()
     {
 
         if(!$this->required())
@@ -127,9 +127,8 @@ class UserModel extends Model
             }
         }
 
-        $this->data = $this->read("SELECT * FROM ".self::$entity." WHERE id = :id", "id={$userId}")->fetchObject(__CLASS__);
-        return $this;
-
+        // $this->data = $this->read("SELECT * FROM ".self::$entity." WHERE id = :id", "id={$userId}")->fetchObject(__CLASS__);
+        // return $this;
     }
 
     /**

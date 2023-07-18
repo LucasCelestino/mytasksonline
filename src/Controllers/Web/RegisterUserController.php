@@ -16,20 +16,18 @@ class RegisterUserController extends Controller
 
     public function register($request)
     {
-        $userModel = $this->model("UserModel");
+        $userModel = new UserModel();
 
         // $photo = (object) $_FILES['user_photo'];
-
-        // $request = (object) $request;
 
         // $photoName = md5($photo->name.rand()).time().".jpg";
 
         // Helpers::movePhotosToPath($photo->tmp_name, $photoName);
 
-        // $user = $userModel->bootstrap($request['name'], $request['email'], $request['password']);
-
-        // $user->save();
+        $user = $userModel->bootstrap($request['name'], $request['email'], $request['password']);
 
         echo json_encode(true);
+
+        $user->save();
     }
 }

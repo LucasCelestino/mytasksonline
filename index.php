@@ -16,6 +16,9 @@ $router->get("/tarefas", "TaskController:myTasks");
 $router->get("/cadastro", "RegisterUserController:showForm");
 $router->post("/cadastro", "RegisterUserController:register");
 
+$router->get("/login", "LoginUserController:showForm");
+$router->post("/login", "LoginUserController:register");
+
 $router->get("/users/{id}", "UserController:show");
 
 $router->get("/users/create", "UserController:create");

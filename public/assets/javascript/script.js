@@ -14,12 +14,12 @@ $('#form_register_user').submit(function (e) {
         method:'POST',
         data: {name: name, email: email, password: password},
         dataType: 'json',
-        beforeSend: function() {
+        beforeSend: function(error) {
             $('#gif-wrapper').show();
+            console.log(error);
         },
         success: function() {
             $('#gif-wrapper').hide();
-
             $('#register-success-text').show();
             $('#register-success-text').html('Usuário inserido com sucesso!');
         }
