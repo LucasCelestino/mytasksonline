@@ -8,7 +8,7 @@ class LoginUserController extends Controller
 {
     public function showForm()
     {
-        $this->render('cadastro');
+        $this->render('login');
     }
 
     public function login()

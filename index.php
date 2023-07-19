@@ -11,10 +11,13 @@ $router = new Router(APP_URL);
 
 $router->namespace("App\Controllers\Web");
 
-$router->get("/tarefas", "TaskController:myTasks");
+$router->get("/", "HomeController:index");
 
 $router->get("/cadastro", "RegisterUserController:showForm");
 $router->post("/cadastro", "RegisterUserController:register");
+
+$router->get("/login", "LoginUserController:showForm");
+$router->post("/login", "LoginUserController:login");
 
 $router->get("/login", "LoginUserController:showForm");
 $router->post("/login", "LoginUserController:register");

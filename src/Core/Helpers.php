@@ -31,7 +31,7 @@ class Helpers
      *
      * @return void
      */
-    function redirect(string $url): void
+    public static function redirect(string $url): void
     {
         header("HTTP/1.1 302 Redirect");
         if (filter_var($url, FILTER_VALIDATE_URL)) {

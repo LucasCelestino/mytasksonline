@@ -1,5 +1,5 @@
 <?php $this->layout('layout/template', ['title' => 'Login']) ?>
-<div class="content-wrapper">
+<div class="content-wrapper" style="height:300px;">
     <h1 class="title-site">Tasks Online</h1>
     <form action="{{url}}/usuarios/login" method="post">
         <div class="form-group">
