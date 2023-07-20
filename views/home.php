@@ -10,7 +10,7 @@
                 <a href="#"><li style="padding: 0 5px; color:#6200EA; font-size:13px; font-weight:bold;">Minhas Tarefas</li></a>
                 <a href="#"><li style="padding: 0 5px; color:#6200EA; font-size:13px; font-weight:bold;">Anotações</li></a>
                 <a href="#"><li style="padding: 0 5px; color:#6200EA; font-size:13px; font-weight:bold;">Configurações</li></a>
-                <a href="#"><li style="padding: 0 5px; color:#6200EA; font-size:13px; font-weight:bold;">Sair</li></a>
+                <a href="<?=APP_URL?>/loggout"><li style="padding: 0 5px; color:#6200EA; font-size:13px; font-weight:bold;">Sair</li></a>
             </ul>
         </div>
     </header>
@@ -20,6 +20,6 @@
         <p>Ao concluir tarefas e anotações você ganha experiência que te ajuda a subir de nível.</p>
         <p>A cada 5 níveis você ganha mais 2 tarefas e anotações (somadas).</p>
         <p>Para saber quantas tarefas ou anotações disponiveis você possui, basta acessar "Minhas Tarefas" ou "Minhas Anotações" no menu.</p>
-        <button class="btn-task">Fechar</button>
+        <a href="<?=APP_URL?>/perfil?id=<?=$_SESSION['user_auth']->slug;?>"><button class="btn-task">Fechar</button></a>
     </div>
 </div>

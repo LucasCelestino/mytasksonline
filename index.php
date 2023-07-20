@@ -11,6 +11,8 @@ $router = new Router(APP_URL);
 
 $router->namespace("App\Controllers\Web");
 
+$router->get("/teste", "LoggoutController:loggout");
+
 $router->get("/", "HomeController:index");
 
 $router->get("/cadastro", "RegisterUserController:showForm");
@@ -18,6 +20,8 @@ $router->post("/cadastro", "RegisterUserController:register");
 
 $router->get("/login", "LoginUserController:showForm");
 $router->post("/login", "LoginUserController:login");
+
+$router->get("/perfil", "ProfileController:index");
 
 // $router->get("/users/{id}", "UserController:show");
 // $router->put("/users/update", "UserController:update");

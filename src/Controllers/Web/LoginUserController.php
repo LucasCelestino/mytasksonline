@@ -52,4 +52,11 @@ class LoginUserController extends Controller
         echo json_encode(2);
         exit;
     }
+
+    public function loggout()
+    {
+        Session::destroy();
+        Helpers::redirect(APP_URL."/login");
+        exit;
+    }
 }

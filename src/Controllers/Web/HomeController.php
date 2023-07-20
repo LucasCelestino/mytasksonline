@@ -19,7 +19,7 @@ class HomeController extends Controller
 
     public function index()
     {
-        var_dump($_SESSION['user_auth']);exit;
+        // $_SESSION['user_auth'];
         $this->render('home');
     }
 

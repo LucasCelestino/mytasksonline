@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="<?=CSS_URL."/home.css"?>">
     <link rel="stylesheet" href="<?=CSS_URL."/layout.css"?>">
     <link rel="stylesheet" href="<?=CSS_URL."/add-task.css"?>">
+    <link rel="stylesheet" href="<?=CSS_URL."/profile.css"?>">
     <link rel="stylesheet" href="<?=CSS_URL."/welcome.css"?>">
     <link rel="stylesheet" href="<?=CSS_URL."/configuration.css"?>">
     <link rel="stylesheet" href="<?=CSS_URL."/my-tasks.css"?>">
@@ -30,8 +31,10 @@
 <div class="add-task-wrapper">
     <a href="{{url}}/tarefa/cadastro"><button class="btn-task" style="margin-right: 10px;">Adicionar Tarefa</button></a>
     <a href="{{url}}/tarefa/cadastro"><button class="btn-task">Adicionar Anotação</button></a>
+    <?php if(isset($_SESSION['user_auth']->picture_url)): ?>
     <div style="background-image:url('assets/images/ee48d3d2-bf27-49bf-8b0d-ac2f41206be0.jpg'); background-size:cover; margin-left:10px; width: 35px; height:35px; border-radius:50%;"></div>
-    <p style="margin-left: 5px; color:#FFF;">Lucas Celestino</p>
+    <?php endif; ?>
+    <p style="margin-left: 5px; color:#FFF;"><?=$_SESSION['user_auth']->name; ?></p>
     <p style="margin-left: 5px; color:#FFF; font-weight:bold;">Nível 0</p>
 </div>
 <?=$this->section('content')?>
