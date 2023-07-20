@@ -19,7 +19,11 @@ class TaskController extends Controller
 
     public function showForm()
     {
-        $this->render('adicionar-tarefa');
+        $categoryModel = $this->model("CategoryModel");
+
+        $categories = $categoryModel->findAll();
+
+        $this->render('adicionar-tarefa', '', ['categories'=>$categories]);
     }
 
     public function addTask($request)

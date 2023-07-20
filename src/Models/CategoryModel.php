@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use PDO;
+
 class CategoryModel extends Model
 {
     /**
@@ -55,7 +57,7 @@ class CategoryModel extends Model
             return null;
         }
 
-        return $find->fetchObject(__CLASS__);
+        return $find->fetchAll(PDO::FETCH_OBJ);
     }
 
     /**

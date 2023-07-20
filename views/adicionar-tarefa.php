@@ -25,11 +25,9 @@
                 <label for="">Categoria da Tarefa:</label>
                 <select name="task-category" id="task-category">
                     <option value="0">-</option>
-                    <option value="1">Casa</option>
-                    <option value="2">Estudo</option>
-                    <option value="3">Trabalho</option>
-                    <option value="4">Pessoal</option>
-                    <option value="5">Familia</option>
+                    <?php foreach ($categories as $category): ?>
+                        <option value="<?=$category->id?>"><?=$category->title?></option>
+                    <?php endforeach; ?>
                 </select>
             </div>
             <div class="form-group">
