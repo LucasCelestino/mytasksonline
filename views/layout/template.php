@@ -20,6 +20,7 @@
 <body class="body-container">
 <?=$this->section('content')?>
 <script src="<?=JS_URL."/jquery.min.js"?>"></script>
-<script src="<?=JS_URL."/script.js"?>"></script>
+<script src="<?=JS_URL."/ajax_login.js"?>"></script>
+<script src="<?=JS_URL."/ajax_register.js"?>"></script>
 </body>
 </html>

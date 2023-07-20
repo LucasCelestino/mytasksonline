@@ -19,7 +19,8 @@ class HomeController extends Controller
 
     public function index()
     {
-        $this->render('cadastro');
+        var_dump($_SESSION['user_auth']);exit;
+        $this->render('home');
     }
 
     public function login()

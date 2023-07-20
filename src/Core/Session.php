@@ -18,9 +18,9 @@ class Session
      *
      * @return Session
      */
-    public static function set(string $key, $value): Session
+    public static function set(string $key, $value)
     {
-        $_SESSION[$key] = (is_array($value) ? (object)$value : $value);
+        $_SESSION[$key] = $value;
         return $_SESSION[$key];
     }
 

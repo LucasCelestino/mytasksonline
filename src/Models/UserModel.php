@@ -57,7 +57,7 @@ class UserModel extends Model
      *
      * @return UserModel|null
      */
-    public function find(string $email, string $columns = '*'): ?UserModel
+    public function find(string $email, string $columns = '*')
     {
         $find = $this->read("SELECT {$columns} FROM ".self::$entity." WHERE email = :email", "email={$email}");
 

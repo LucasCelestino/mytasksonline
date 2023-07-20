@@ -16,6 +16,7 @@ $('#form_register_user').submit(function (e) {
         dataType: 'json',
         beforeSend: function(error) {
             $('#gif-wrapper').show();
+            console.log(error);
         },
         success: function(result) {
             cleanInput();

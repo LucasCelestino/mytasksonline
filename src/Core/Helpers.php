@@ -60,4 +60,9 @@ class Helpers
     {
         return strlen($password) > 5 ? true : false;
     }
+
+    public static function verifyPasswordHash($password, $hash)
+    {
+        return password_verify($password, $hash) ? true : false;
+    }
 }
