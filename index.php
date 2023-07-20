@@ -21,6 +21,9 @@ $router->post("/cadastro", "RegisterUserController:register");
 $router->get("/login", "LoginUserController:showForm");
 $router->post("/login", "LoginUserController:login");
 
+$router->get("/adicionar-tarefa", "TaskController:showForm");
+$router->post("/adicionar-tarefa", "TaskController:addTask");
+
 $router->get("/perfil", "ProfileController:index");
 
 // $router->get("/users/{id}", "UserController:show");
