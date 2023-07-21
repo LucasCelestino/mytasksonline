@@ -3,6 +3,7 @@
 namespace App\Core;
 
 use App\Core\Session;
+use App\Models\LevelSystemModel;
 
 class ExperienceHelper
 {
@@ -24,30 +25,54 @@ class ExperienceHelper
                 break;
 
             case $actual_nv > 10 && $actual_nv <= 30:
-                return array_rand(self::$midLevelExperience, 1);
+                return self::$midLevelExperience[array_rand(self::$midLevelExperience, 1)];
                 break;
 
             case $actual_nv > 30:
-                return array_rand(self::$highLevelExperience, 1);
+                return self::$highLevelExperience[array_rand(self::$highLevelExperience, 1)];
                 break;
         }
     }
 
-    public static function setExperienceBar($actual_nv)
+    private static function setExperienceBar($actual_nv)
     {
         switch ($actual_nv)
         {
             case $actual_nv <= 10:
-                self::$lowLevelExperienceBar;
+                return self::$lowLevelExperienceBar;
                 break;
 
             case $actual_nv > 10 && $actual_nv < 50:
-                self::$midLevelExperienceBar;
+                return self::$midLevelExperienceBar;
                 break;
 
             case $actual_nv > 50:
-                self::$highLevelExperienceBar;
+                return self::$highLevelExperienceBar;
                 break;
         }
+    }
+
+    private static function fullExperienceBar($experienceBar, $experienceGauge)
+    {
+        return $experienceGauge >= $experienceBar ? true : false;
+    }
+
+    public static function upForNextLevel($experienceBar, $experienceGauge, LevelSystemModel $levelSystemUser, $experience)
+    {
+        if(self::fullExperienceBar($experienceBar, $experienceGauge))
+        {
+            $levelSystemUser->actual_level += 1;
+            $levelSystemUser->experience_gauge = 0;
+
+            $newExperienceBar = self::setExperienceBar($levelSystemUser->actual_level);
+
+            $levelSystemUser->experience_bar = $newExperienceBar;
+        }
+        else
+        {
+            $levelSystemUser->experience_gauge += $experience;
+        }
+
+        $levelSystemUser->save();
     }
 }

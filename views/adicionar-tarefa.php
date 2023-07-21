@@ -19,11 +19,11 @@
         <form action="<?=APP_URL?>/adicionar-tarefa" method="post" id="form_task">
             <div class="form-group">
                 <label for="">Título da Tarefa:</label>
-                <input type="text" name="task-title" id="task-title">
+                <input type="text" name="title" id="task-title">
             </div>
             <div class="form-group">
                 <label for="">Categoria da Tarefa:</label>
-                <select name="task-category" id="task-category">
+                <select name="category" id="task-category">
                     <option value="0">-</option>
                     <?php foreach ($categories as $category): ?>
                         <option value="<?=$category->id?>"><?=$category->title?></option>
@@ -32,7 +32,7 @@
             </div>
             <div class="form-group">
                 <label for="">Tarefa Publica:</label>
-                <select name="task-public" id="task-public">
+                <select name="public" id="task-public">
                     <option value="0">-</option>
                     <option value="1">Sim</option>
                     <option value="2">Não</option>

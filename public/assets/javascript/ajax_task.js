@@ -30,19 +30,13 @@ function registerStatusMessageTask(status)
         case 0:
             $('#register-success-text').addClass('error-message');
             $('#register-success-text').show();
-            $('#register-success-text').html('Nenhum usuário encontrado com o email informado.');
+            $('#register-success-text').html('Preencha todos os campos antes de inserir uma tarefa.');
             break;
 
         case 1:
-            $('#register-success-text').addClass('error-message');
-            $('#register-success-text').show();
-            $('#register-success-text').html('Senha incorreta, tente novamente.');
-            break;
-
-        case 3:
             $('#register-success-text').addClass('success-message');
             $('#register-success-text').show();
-            $('#register-success-text').html('Tarefa adicionada com sucesso!.');
+            $('#register-success-text').html('Tarefa adicionada com sucesso!');
             break;
     }
 }
