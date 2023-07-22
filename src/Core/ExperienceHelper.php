@@ -34,7 +34,7 @@ class ExperienceHelper
         }
     }
 
-    private static function setExperienceBar($actual_nv)
+    public static function setExperienceBar($actual_nv)
     {
         switch ($actual_nv)
         {

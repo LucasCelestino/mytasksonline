@@ -2,6 +2,7 @@
 
 namespace App\Controllers\Web;
 
+use App\Core\ExperienceHelper;
 use App\Core\Helpers;
 use App\Core\Session;
 use App\Models\UserModel;
@@ -62,6 +63,16 @@ class RegisterUserController extends Controller
             echo json_encode(2);
             exit;
         }
+
+        $user_id = $userModel->find($_SESSION['user_auth']->email)->id;
+
+        $levelSystem = $this->model("LevelSystemModel");
+
+        $experienceBar = ExperienceHelper::setExperienceBar(1);
+
+        $levelSystemUser = $levelSystem->bootstrap($user_id, 1, $experienceBar, 0);
+
+        $levelSystemUser->save();
 
         echo json_encode(3);
     }
