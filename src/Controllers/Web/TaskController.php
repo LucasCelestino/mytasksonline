@@ -57,7 +57,25 @@ class TaskController extends Controller
 
         $task = $taskModel->bootstrap($user_id, $category_id, $title, $public, $experience);
 
-        $task->save();
+        $taskId = $task->save();
+
+        // Task Status //
+        $taskStatusModel = $this->model("TaskStatusModel");
+
+        $taskStatus = $taskStatusModel->bootstrap(intval($taskId), 0);
+
+        $taskStatus->save();
+        // ------------- //
+
+        // Avaliable Tasks Notes //
+        $availableTasksNotesModel = $this->model("AvailableTaskNoteModel");
+
+        $availableTasksNotes = $availableTasksNotesModel->findByUserId(intval($user_id));
+
+        $availableTasksNotes->available -= 1;
+
+        $availableTasksNotes->save();
+        // ------------- //
 
         echo json_encode(1);
     }
@@ -67,6 +85,11 @@ class TaskController extends Controller
         Session::destroy();
         Helpers::redirect(APP_URL."/");
         exit;
+    }
+
+    public function completeTask()
+    {
+
     }
 
     public function deleteTask()

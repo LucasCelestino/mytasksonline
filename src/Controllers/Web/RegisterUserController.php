@@ -37,11 +37,11 @@ class RegisterUserController extends Controller
         // $photoName = md5($photo->name.rand()).time().".jpg";
         // Helpers::movePhotosToPath($photo->tmp_name, $photoName);
 
-        if(!Helpers::verifyPassword($request['password'], $request['confirmPassword']))
-        {
-            echo json_encode(0);
-            exit;
-        }
+        // if(!Helpers::verifyPassword($request['password'], $request['confirmPassword']))
+        // {
+        //     echo json_encode(0);
+        //     exit;
+        // }
 
         if(!Helpers::verifyPasswordLength($request['password']))
         {
@@ -64,15 +64,25 @@ class RegisterUserController extends Controller
             exit;
         }
 
-        $user_id = $userModel->find($_SESSION['user_auth']->email)->id;
+        // Level System //
+        $user_id = $userModel->find($request['email'])->id;
 
         $levelSystem = $this->model("LevelSystemModel");
 
         $experienceBar = ExperienceHelper::setExperienceBar(1);
 
-        $levelSystemUser = $levelSystem->bootstrap($user_id, 1, $experienceBar, 0);
+        $levelSystemUser = $levelSystem->bootstrap(intval($user_id), 1, $experienceBar, 0);
 
         $levelSystemUser->save();
+        // ------------- //
+
+        // Available Tasks //
+        $availableTaskNote = $this->model("AvailableTaskNoteModel");
+
+        $availableTaskNoteUser = $availableTaskNote->bootstrap(intval($user_id), 3, 3);
+
+        $availableTaskNoteUser->save();
+        // ------------- //
 
         echo json_encode(3);
     }

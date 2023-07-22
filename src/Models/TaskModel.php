@@ -135,8 +135,7 @@ class TaskModel extends Model
             $taskId = $this->create("INSERT INTO ".self::$entity." (user_id,category_id,title,public,experience) VALUES (:user_id,:category_id,:title,:public,:experience)", $this->safe());
         }
 
-        // $this->data = $this->read("SELECT * FROM ".self::$entity." WHERE id = :id", "id={$userId}")->fetchObject(__CLASS__);
-        // return $this;
+        return $taskId;
     }
 
     /**

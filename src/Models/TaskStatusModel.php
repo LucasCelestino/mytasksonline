@@ -15,12 +15,12 @@ class TaskStatusModel extends Model
     private static string $entity = 'tasks_status';
 
     /**
-     * @param int $task_id
-     * @param int $status
+     * @param  $task_id
+     * @param  $status
      *
      * @return TaskStatusModel
      */
-    public function bootstrap(int $task_id, int $status): TaskStatusModel
+    public function bootstrap($task_id, $status): TaskStatusModel
     {
         $this->task_id = $task_id;
         $this->status = $status;
@@ -71,7 +71,7 @@ class TaskStatusModel extends Model
 
         if(!$this->required())
         {
-            return null;
+            return 'REQUIRED';
         }
 
         // UPDATE TASK
@@ -83,7 +83,7 @@ class TaskStatusModel extends Model
 
             if($this->fail())
             {
-                return null;
+                return 'FAIL';
             }
         }
         // CREATE TASK
@@ -93,7 +93,6 @@ class TaskStatusModel extends Model
         }
 
         // $this->data = $this->read("SELECT * FROM ".self::$entity." WHERE id = :id", "id={$userId}")->fetchObject(__CLASS__);
-        // return $this;
     }
 
     /**
@@ -101,7 +100,7 @@ class TaskStatusModel extends Model
      */
     public function required(): bool
     {
-        if(!$this->task_id || !$this->status)
+        if(!$this->task_id)
         {
             return false;
         }
