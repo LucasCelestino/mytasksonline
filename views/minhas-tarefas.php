@@ -2,7 +2,7 @@
 <div class="content-wrapper-home" style="margin-bottom: 20px; padding-bottom:20px;">
     <header class="header-home">
         <div class="logo">
-            <img src="assets/images/to-do-list.png" width="25">
+            <img src="<?=IMAGES_URL;?>/to-do-list.png" width="25">
             <p>Minhas Tarefas</p>
         </div>
         <div class="menu">
@@ -17,11 +17,11 @@
     </header>
     <div class="tasks-status-wrapper">
         <div class="status">
-            <p class="completed">Tarefas Concluidas: 0</p>
-            <p class="progress">Tarefas em Andamento: 0</p>
-            <p class="deleted">Tarefas Excluidas: 0</p>
+            <p class="completed">Tarefas Concluidas: <?=$task_completed;?></p>
+            <p class="progress">Tarefas em Andamento: <?=$task_in_progress;?></p>
+            <p class="deleted">Tarefas Excluidas: <?=$task_deleted;?></p>
         </div>
-        <p class="available-tasks">Tarefas Disponíveis: 5</p>
+        <p class="available-tasks">Tarefas Disponíveis: <?=$available_tasks_notes->available;?></p>
     </div>
     <div class="tasks-wrapper" style="max-height:400px !important; height:100% !important;">
             <div class="item">
@@ -32,8 +32,8 @@
                     </div>
                 </div>
                 <div class="actions">
-                    <a href="<?=APP_URL?>/tarefa/concluir/{{task.id}}"><img src="assets/images/check.png" width="15"></a>
-                    <a href="<?=APP_URL?>/tarefa/excluir/{{task.id}}"><img src="assets/images/trash.png" width="15"></a>
+                    <a href="<?=APP_URL?>/tarefa/concluir/{{task.id}}"><img src="<?=IMAGES_URL;?>/check.png" width="15"></a>
+                    <a href="<?=APP_URL?>/tarefa/excluir/{{task.id}}"><img src="<?=IMAGES_URL;?>/trash.png" width="15"></a>
                 </div>
             </div>
     </div>

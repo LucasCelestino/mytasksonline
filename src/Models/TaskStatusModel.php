@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use PDO;
+
 class TaskStatusModel extends Model
 {
     /**
@@ -61,6 +63,30 @@ class TaskStatusModel extends Model
         }
 
         return $find->fetchObject(__CLASS__);
+    }
+
+    public function findByUserId(int $user_id, string $columns = '*')
+    {
+        $find = $this->read("SELECT {$columns} FROM ".self::$entity." WHERE user_id = :user_id", "user_id={$user_id}");
+
+        if($this->fail() || !$find->rowCount())
+        {
+            return null;
+        }
+
+        return $find->fetchObject(__CLASS__);
+    }
+
+    public function findByTaskStatus(int $user_id, int $status,string $columns = '*')
+    {
+        $find = $this->read("SELECT {$columns} FROM ".self::$entity." WHERE user_id = :user_id AND status = :status", "user_id={$user_id}&status={$status}");
+
+        if($this->fail() || !$find->rowCount())
+        {
+            return null;
+        }
+
+        return $find->fetchAll(PDO::FETCH_CLASS);
     }
 
     /**

@@ -24,6 +24,8 @@ $router->post("/login", "LoginUserController:login");
 $router->get("/adicionar-tarefa", "TaskController:showForm");
 $router->post("/adicionar-tarefa", "TaskController:addTask");
 
+$router->get("/minhas-tarefas", "TaskController:myTasks");
+
 $router->get("/perfil", "ProfileController:index");
 
 // $router->get("/users/{id}", "UserController:show");

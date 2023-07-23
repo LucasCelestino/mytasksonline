@@ -9,6 +9,8 @@ use App\Models\UserModel;
 
 class TaskController extends Controller
 {
+    private array $data = [];
+
     public function __construct()
     {
         if(!Session::has('user_auth'))
@@ -82,9 +84,46 @@ class TaskController extends Controller
 
     public function myTasks()
     {
-        Session::destroy();
-        Helpers::redirect(APP_URL."/");
-        exit;
+        $availableTasksNotesModel = $this->model("AvailableTaskNoteModel");
+        $taskStatusModel = $this->model("TaskStatusModel");
+
+        $user_id = $this->model("UserModel")->find($_SESSION['user_auth']->email)->id;
+
+        $availableTasksNotes = $availableTasksNotesModel->findAvailableTasksByUserId($user_id);
+
+        $task_in_progress = 0;
+
+        foreach ($taskStatusModel->findByTaskStatus($user_id, 0) as $key => $value)
+        {
+            $task_in_progress++;
+        }
+
+        $task_completed = 0;
+
+        if($taskStatusModel->findByTaskStatus($user_id, 1) != null)
+        {
+            foreach ($taskStatusModel->findByTaskStatus($user_id, 1) as $key => $value)
+            {
+                $task_completed++;
+            }
+        }
+
+        $task_deleted = 0;
+
+        if($taskStatusModel->findByTaskStatus($user_id, 2) != null)
+        {
+            foreach ($taskStatusModel->findByTaskStatus($user_id, 2) as $key => $value)
+            {
+                $task_deleted++;
+            }
+        }
+
+        $this->data['available_tasks_notes'] = $availableTasksNotes;
+        $this->data['task_in_progress'] = $task_in_progress;
+        $this->data['task_completed'] = $task_completed;
+        $this->data['task_deleted'] = $task_deleted++;
+
+        $this->render("minhas-tarefas", '', $this->data);
     }
 
     public function completeTask()

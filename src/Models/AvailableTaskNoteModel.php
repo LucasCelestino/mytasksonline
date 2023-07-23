@@ -65,6 +65,18 @@ class AvailableTaskNoteModel extends Model
         return $find->fetchObject(__CLASS__);
     }
 
+    public function findAvailableTasksByUserId(int $user_id)
+    {
+        $find = $this->read("SELECT available FROM ".self::$entity." WHERE user_id = :user_id", "user_id={$user_id}");
+
+        if($this->fail() || !$find->rowCount())
+        {
+            return null;
+        }
+
+        return $find->fetchObject(__CLASS__);
+    }
+
     /**
      * @return AvailableTaskNoteModel|null
      */
