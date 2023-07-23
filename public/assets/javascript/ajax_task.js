@@ -30,10 +30,16 @@ function registerStatusMessageTask(status)
         case 0:
             $('#register-success-text').addClass('error-message');
             $('#register-success-text').show();
-            $('#register-success-text').html('Preencha todos os campos antes de inserir uma tarefa.');
+            $('#register-success-text').html('Você não possui mais tarefas ou anotações disponiveis para serem cadastradas.');
             break;
 
         case 1:
+            $('#register-success-text').addClass('error-message');
+            $('#register-success-text').show();
+            $('#register-success-text').html('Preencha todos os campos antes de inserir uma tarefa.');
+            break;
+
+        case 2:
             $('#register-success-text').addClass('success-message');
             $('#register-success-text').show();
             $('#register-success-text').html('Tarefa adicionada com sucesso!');

@@ -33,6 +33,14 @@ class TaskController extends Controller
     {
         $levelSystemModel = $this->model("LevelSystemModel");
         $taskModel = $this->model("TaskModel");
+        $availableTasksNotesModel = $this->model("AvailableTaskNoteModel");
+        $user_id = $this->model("UserModel")->find($_SESSION['user_auth']->email)->id;
+
+        if($availableTasksNotesModel->findByUserId($user_id)->available == 0)
+        {
+            echo json_encode(0);
+            exit;
+        }
 
         $title = $request['title'];
         $category_id = $request['category'];
@@ -40,11 +48,9 @@ class TaskController extends Controller
 
         if(empty($title) || $category_id == 0 || $public == 0)
         {
-            echo json_encode(0);
+            echo json_encode(1);
             exit;
         }
-
-        $user_id = $this->model("UserModel")->find($_SESSION['user_auth']->email)->id;
 
         $levelSystemUser = $levelSystemModel->findByUserId($user_id);
         $experience = ExperienceHelper::setTaskReceivedExperience(intval($levelSystemUser->actual_level));
@@ -64,14 +70,12 @@ class TaskController extends Controller
         // Task Status //
         $taskStatusModel = $this->model("TaskStatusModel");
 
-        $taskStatus = $taskStatusModel->bootstrap(intval($taskId), 0);
+        $taskStatus = $taskStatusModel->bootstrap(intval($taskId),intval($user_id), 0);
 
         $taskStatus->save();
         // ------------- //
 
         // Avaliable Tasks Notes //
-        $availableTasksNotesModel = $this->model("AvailableTaskNoteModel");
-
         $availableTasksNotes = $availableTasksNotesModel->findByUserId(intval($user_id));
 
         $availableTasksNotes->available -= 1;
@@ -79,7 +83,7 @@ class TaskController extends Controller
         $availableTasksNotes->save();
         // ------------- //
 
-        echo json_encode(1);
+        echo json_encode(2);
     }
 
     public function myTasks()
@@ -93,9 +97,12 @@ class TaskController extends Controller
 
         $task_in_progress = 0;
 
-        foreach ($taskStatusModel->findByTaskStatus($user_id, 0) as $key => $value)
+        if($taskStatusModel->findByTaskStatus($user_id, 0) != null)
         {
-            $task_in_progress++;
+            foreach ($taskStatusModel->findByTaskStatus($user_id, 0) as $key => $value)
+            {
+                $task_in_progress++;
+            }
         }
 
         $task_completed = 0;

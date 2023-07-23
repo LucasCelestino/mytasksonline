@@ -22,9 +22,10 @@ class TaskStatusModel extends Model
      *
      * @return TaskStatusModel
      */
-    public function bootstrap($task_id, $status): TaskStatusModel
+    public function bootstrap($task_id, $user_id, $status): TaskStatusModel
     {
         $this->task_id = $task_id;
+        $this->user_id = $user_id;
         $this->status = $status;
         return $this;
     }
