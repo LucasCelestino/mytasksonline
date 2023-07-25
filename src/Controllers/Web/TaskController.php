@@ -63,22 +63,21 @@ class TaskController extends Controller
         );
 
 
-        $task = $taskModel->bootstrap($user_id, $category_id, $title, $public, $experience);
+        $task = $taskModel->bootstrap($user_id, $category_id, $title, $public, $experience, 0);
 
         $taskId = $task->save();
-
-        // Task Status //
-        $taskStatusModel = $this->model("TaskStatusModel");
-
-        $taskStatus = $taskStatusModel->bootstrap(intval($taskId),intval($user_id), 0);
-
-        $taskStatus->save();
-        // ------------- //
 
         // Avaliable Tasks Notes //
         $availableTasksNotes = $availableTasksNotesModel->findByUserId(intval($user_id));
 
-        $availableTasksNotes->available -= 1;
+        if($availableTasksNotes->available == 1)
+        {
+            $availableTasksNotes->available = 0;
+        }
+        else
+        {
+            $availableTasksNotes->available -= 1;
+        }
 
         $availableTasksNotes->save();
         // ------------- //
@@ -90,8 +89,11 @@ class TaskController extends Controller
     {
         $availableTasksNotesModel = $this->model("AvailableTaskNoteModel");
         $taskStatusModel = $this->model("TaskStatusModel");
+        $taskModel = $this->model("TaskModel");
 
         $user_id = $this->model("UserModel")->find($_SESSION['user_auth']->email)->id;
+
+        var_dump($taskModel->findAllByUserIdAndStatus($user_id, 0));exit;
 
         $availableTasksNotes = $availableTasksNotesModel->findAvailableTasksByUserId($user_id);
 

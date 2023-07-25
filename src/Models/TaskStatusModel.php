@@ -116,7 +116,7 @@ class TaskStatusModel extends Model
         // CREATE TASK
         else
         {
-            $taskStatusId = $this->create("INSERT INTO ".self::$entity." (task_id,status) VALUES (:task_id,:status)", $this->safe());
+            $taskStatusId = $this->create("INSERT INTO ".self::$entity." (task_id,user_id,status) VALUES (:task_id,:user_id,:status)", $this->safe());
         }
 
         // $this->data = $this->read("SELECT * FROM ".self::$entity." WHERE id = :id", "id={$userId}")->fetchObject(__CLASS__);

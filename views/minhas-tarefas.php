@@ -21,7 +21,11 @@
             <p class="progress">Tarefas em Andamento: <?=$task_in_progress;?></p>
             <p class="deleted">Tarefas Excluidas: <?=$task_deleted;?></p>
         </div>
-        <p class="available-tasks">Tarefas Disponíveis: <?=$available_tasks_notes->available;?></p>
+        <?php if($available_tasks_notes->available != 0): ?>
+            <p class="available-tasks">Tarefas Disponíveis: <?=$available_tasks_notes->available;?></p>
+        <?php else: ?>
+            <p class="available-tasks">Tarefas Disponíveis: 0</p>
+        <?php endif; ?>
     </div>
     <div class="tasks-wrapper" style="max-height:400px !important; height:100% !important;">
             <div class="item">

@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use PDO;
+
 class TaskModel extends Model
 {
     /**
@@ -20,16 +22,18 @@ class TaskModel extends Model
      * @param String $title
      * @param String $public
      * @param int $experience
+     * @param int $status
      *
      * @return TaskModel
      */
-    public function bootstrap(String $user_id, String $category_id, String $title, String $public, int $experience): TaskModel
+    public function bootstrap(String $user_id, String $category_id, String $title, String $public, int $experience, int $status): TaskModel
     {
         $this->user_id = $user_id;
         $this->category_id = $category_id;
         $this->title = $title;
         $this->public = $public;
         $this->experience = $experience;
+        $this->status = $status;
         return $this;
     }
 
@@ -87,6 +91,30 @@ class TaskModel extends Model
         return $find->fetchObject(__CLASS__);
     }
 
+    public function findAllByUserId(int $user_id, string $columns = '*')
+    {
+        $find = $this->read("SELECT {$columns} FROM tasks_status INNER JOIN tasks ON tasks.user_id = :user_id", "user_id={$user_id}");
+
+        if($this->fail() || !$find->rowCount())
+        {
+            return null;
+        }
+
+        return $find->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function findAllByUserIdAndStatus(int $user_id, int $status, string $columns = '*')
+    {
+        $find = $this->read("SELECT {$columns} FROM ".self::$entity." WHERE user_id = :user_id AND status = :status", "user_id={$user_id}&status={$status}");
+
+        if($this->fail() || !$find->rowCount())
+        {
+            return null;
+        }
+
+        return $find->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     /**
      * @param int $limit
      * @param int $offset
@@ -132,7 +160,7 @@ class TaskModel extends Model
         // CREATE TASK
         else
         {
-            $taskId = $this->create("INSERT INTO ".self::$entity." (user_id,category_id,title,public,experience) VALUES (:user_id,:category_id,:title,:public,:experience)", $this->safe());
+            $taskId = $this->create("INSERT INTO ".self::$entity." (user_id,category_id,title,public,experience,status) VALUES (:user_id,:category_id,:title,:public,:experience,:status)", $this->safe());
         }
 
         return $taskId;
@@ -158,7 +186,7 @@ class TaskModel extends Model
      */
     public function required(): bool
     {
-        if(!$this->user_id || !$this->category_id || !$this->title || !$this->public || !$this->experience)
+        if(!$this->user_id || !$this->category_id || !$this->title || !$this->experience)
         {
             return false;
         }

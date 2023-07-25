@@ -115,7 +115,7 @@ class AvailableTaskNoteModel extends Model
      */
     public function required(): bool
     {
-        if(!$this->user_id || !$this->available || !$this->total)
+        if(!$this->user_id || !$this->total)
         {
             return false;
         }
