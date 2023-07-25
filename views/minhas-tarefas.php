@@ -28,17 +28,26 @@
         <?php endif; ?>
     </div>
     <div class="tasks-wrapper" style="max-height:400px !important; height:100% !important;">
+            <?php foreach ($tasks as $task): ?>
             <div class="item">
                 <div class="title">
-                    <p>{{task.title}}</p>
+                    <p><?=$task['title'] ?></p>
+                    <p style="margin-bottom:10px;">Categoria: <?=$task[0]->title ?></p>
                     <div class="dates">
-                        <p>Adicionado em: {{task.created_at|date("d/m/Y")}}</p>
+                        <p>Adicionado em: <?=$task['created_at'] ?></p>
                     </div>
                 </div>
                 <div class="actions">
-                    <a href="<?=APP_URL?>/tarefa/concluir/{{task.id}}"><img src="<?=IMAGES_URL;?>/check.png" width="15"></a>
-                    <a href="<?=APP_URL?>/tarefa/excluir/{{task.id}}"><img src="<?=IMAGES_URL;?>/trash.png" width="15"></a>
+                    <form action="<?=APP_URL?>/concluir-tarefa" method="post">
+                    <input type="hidden" name="task_id" value="<?=$task['id']; ?>">
+                    <button type="submit" style="background-color: #FFF;"><img src="<?=IMAGES_URL;?>/check.png" width="15"></button>
+                    </form>
+                    <form action="<?=APP_URL?>/excluir-tarefa" method="post">
+                    <input type="hidden" name="task_id" value="<?=$task['id']; ?>">
+                    <button type="submit" style="background-color: #FFF;"><img src="<?=IMAGES_URL;?>/trash.png" width="15"></button>
+                    </form>
                 </div>
             </div>
+            <?php endforeach; ?>
     </div>
 </div>

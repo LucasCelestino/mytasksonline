@@ -89,19 +89,18 @@ class TaskController extends Controller
     {
         $availableTasksNotesModel = $this->model("AvailableTaskNoteModel");
         $taskStatusModel = $this->model("TaskStatusModel");
+        $categoryModel = $this->model("CategoryModel");
         $taskModel = $this->model("TaskModel");
 
         $user_id = $this->model("UserModel")->find($_SESSION['user_auth']->email)->id;
-
-        var_dump($taskModel->findAllByUserIdAndStatus($user_id, 0));exit;
 
         $availableTasksNotes = $availableTasksNotesModel->findAvailableTasksByUserId($user_id);
 
         $task_in_progress = 0;
 
-        if($taskStatusModel->findByTaskStatus($user_id, 0) != null)
+        if($taskModel->findAllByUserIdAndStatus($user_id, 0) != null)
         {
-            foreach ($taskStatusModel->findByTaskStatus($user_id, 0) as $key => $value)
+            foreach ($taskModel->findAllByUserIdAndStatus($user_id, 0) as $key => $value)
             {
                 $task_in_progress++;
             }
@@ -109,9 +108,9 @@ class TaskController extends Controller
 
         $task_completed = 0;
 
-        if($taskStatusModel->findByTaskStatus($user_id, 1) != null)
+        if($taskModel->findAllByUserIdAndStatus($user_id, 1) != null)
         {
-            foreach ($taskStatusModel->findByTaskStatus($user_id, 1) as $key => $value)
+            foreach ($taskModel->findAllByUserIdAndStatus($user_id, 1) as $key => $value)
             {
                 $task_completed++;
             }
@@ -119,9 +118,9 @@ class TaskController extends Controller
 
         $task_deleted = 0;
 
-        if($taskStatusModel->findByTaskStatus($user_id, 2) != null)
+        if($taskModel->findAllByUserIdAndStatus($user_id, 2) != null)
         {
-            foreach ($taskStatusModel->findByTaskStatus($user_id, 2) as $key => $value)
+            foreach ($taskModel->findAllByUserIdAndStatus($user_id, 2) as $key => $value)
             {
                 $task_deleted++;
             }
@@ -131,17 +130,54 @@ class TaskController extends Controller
         $this->data['task_in_progress'] = $task_in_progress;
         $this->data['task_completed'] = $task_completed;
         $this->data['task_deleted'] = $task_deleted++;
+        $this->data['tasks'] = $taskModel->findAllByUserIdAndStatus($user_id, 0);
+
+        for ($i=0; $i < count($this->data['tasks']) ; $i++)
+        {
+            array_push($this->data['tasks'][$i], $categoryModel->load($this->data['tasks'][$i]['category_id']));
+        }
+
 
         $this->render("minhas-tarefas", '', $this->data);
     }
 
-    public function completeTask()
+    public function completeTask($request)
     {
+        $taskModel = $this->model("TaskModel");
 
+        $user_id = $this->model("UserModel")->find($_SESSION['user_auth']->email)->id;
+
+        $task = $taskModel->findByUserIdAndTaskId($user_id, $request['task_id']);
+
+        if($task == null)
+        {
+            echo json_encode(0);
+        }
+
+        $task->status = 1;
+
+        $task->save();
+
+        echo json_encode(1);
     }
 
-    public function deleteTask()
+    public function deleteTask($request)
     {
+        $taskModel = $this->model("TaskModel");
 
+        $user_id = $this->model("UserModel")->find($_SESSION['user_auth']->email)->id;
+
+        $task = $taskModel->findByUserIdAndTaskId($user_id, $request['task_id']);
+
+        if($task == null)
+        {
+            echo json_encode(0);
+        }
+
+        $task->status = 2;
+
+        $task->save();
+
+        echo json_encode(1);
     }
 }

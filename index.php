@@ -26,6 +26,9 @@ $router->post("/adicionar-tarefa", "TaskController:addTask");
 
 $router->get("/minhas-tarefas", "TaskController:myTasks");
 
+$router->post("/concluir-tarefa", "TaskController:completeTask");
+$router->post("/excluir-tarefa", "TaskController:deleteTask");
+
 $router->get("/perfil", "ProfileController:index");
 
 // $router->get("/users/{id}", "UserController:show");
