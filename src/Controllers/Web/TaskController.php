@@ -31,7 +31,6 @@ class TaskController extends Controller
 
     public function addTask($request)
     {
-        $levelSystemModel = $this->model("LevelSystemModel");
         $taskModel = $this->model("TaskModel");
         $availableTasksNotesModel = $this->model("AvailableTaskNoteModel");
         $user_id = $this->model("UserModel")->find($_SESSION['user_auth']->email)->id;
@@ -51,17 +50,6 @@ class TaskController extends Controller
             echo json_encode(1);
             exit;
         }
-
-        $levelSystemUser = $levelSystemModel->findByUserId($user_id);
-        $experience = ExperienceHelper::setTaskReceivedExperience(intval($levelSystemUser->actual_level));
-
-        ExperienceHelper::upForNextLevel(
-            $levelSystemUser->experience_bar,
-            $levelSystemUser->experience_gauge,
-            $levelSystemUser,
-            $experience
-        );
-
 
         $task = $taskModel->bootstrap($user_id, $category_id, $title, $public, $experience, 0);
 
@@ -132,9 +120,12 @@ class TaskController extends Controller
         $this->data['task_deleted'] = $task_deleted++;
         $this->data['tasks'] = $taskModel->findAllByUserIdAndStatus($user_id, 0);
 
-        for ($i=0; $i < count($this->data['tasks']) ; $i++)
+        if(isset($this->data['tasks']) && !empty($this->data['tasks']))
         {
-            array_push($this->data['tasks'][$i], $categoryModel->load($this->data['tasks'][$i]['category_id']));
+            for ($i=0; $i < count($this->data['tasks']) ; $i++)
+            {
+                array_push($this->data['tasks'][$i], $categoryModel->load($this->data['tasks'][$i]['category_id']));
+            }
         }
 
 
@@ -144,6 +135,7 @@ class TaskController extends Controller
     public function completeTask($request)
     {
         $taskModel = $this->model("TaskModel");
+        $levelSystemModel = $this->model("LevelSystemModel");
 
         $user_id = $this->model("UserModel")->find($_SESSION['user_auth']->email)->id;
 
@@ -152,11 +144,22 @@ class TaskController extends Controller
         if($task == null)
         {
             echo json_encode(0);
+            exit;
         }
 
         $task->status = 1;
 
         $task->save();
+
+        $levelSystemUser = $levelSystemModel->findByUserId($user_id);
+        $experience = ExperienceHelper::setTaskReceivedExperience(intval($levelSystemUser->actual_level));
+
+        ExperienceHelper::upForNextLevel(
+            $levelSystemUser->experience_bar,
+            $levelSystemUser->experience_gauge,
+            $levelSystemUser,
+            $experience
+        );
 
         echo json_encode(1);
     }
@@ -172,11 +175,20 @@ class TaskController extends Controller
         if($task == null)
         {
             echo json_encode(0);
+            exit;
         }
 
         $task->status = 2;
 
         $task->save();
+
+        $availableTasksNotesModel = $this->model("AvailableTaskNoteModel");
+
+        $availableTasksNotes = $availableTasksNotesModel->findByUserId($user_id );
+
+        $availableTasksNotes->available += 1;
+
+        $availableTasksNotes->save();
 
         echo json_encode(1);
     }

@@ -1,3 +1,5 @@
+var app_url = 'http://localhost/tasks-online';
+
 $('#form_login_user').submit(function (e) {
     e.preventDefault();
 
@@ -22,7 +24,7 @@ $('#form_login_user').submit(function (e) {
             if(result == 2)
             {
                 setTimeout(() => {
-                    window.location.href = 'http://localhost/tasks-online/';
+                    window.location.href = app_url;
                 }, 2000);
             }
         }

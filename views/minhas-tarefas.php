@@ -3,7 +3,10 @@
     <header class="header-home">
         <div class="logo">
             <img src="<?=IMAGES_URL;?>/to-do-list.png" width="25">
-            <p>Minhas Tarefas</p>
+            <p style="margin-right:10px;">Minhas Tarefas</p>
+            <div id="gif-wrapper" style="height:25px; display:none;">
+            <img id="gif-item" src="http://localhost/tasks-online/public/assets/images/2.gif" width="30" style="margin:auto; display:block;">
+            </div>
         </div>
         <div class="menu">
             <ul style="display: flex;">
@@ -28,6 +31,7 @@
         <?php endif; ?>
     </div>
     <div class="tasks-wrapper" style="max-height:400px !important; height:100% !important;">
+            <?php if(isset($tasks) && !empty($tasks)): ?>
             <?php foreach ($tasks as $task): ?>
             <div class="item">
                 <div class="title">
@@ -37,17 +41,18 @@
                         <p>Adicionado em: <?=$task['created_at'] ?></p>
                     </div>
                 </div>
-                <div class="actions">
-                    <form action="<?=APP_URL?>/concluir-tarefa" method="post">
-                    <input type="hidden" name="task_id" value="<?=$task['id']; ?>">
+                <div class="actions" style="display:flex;">
+                    <form action="<?=APP_URL?>/concluir-tarefa" id="form_complete_task" method="post">
+                    <input type="hidden" name="task_id" id="task_id" value="<?=$task['id']; ?>">
                     <button type="submit" style="background-color: #FFF;"><img src="<?=IMAGES_URL;?>/check.png" width="15"></button>
                     </form>
-                    <form action="<?=APP_URL?>/excluir-tarefa" method="post">
-                    <input type="hidden" name="task_id" value="<?=$task['id']; ?>">
+                    <form action="<?=APP_URL?>/excluir-tarefa" id="form_delete_task" method="post">
+                    <input type="hidden" name="task_id" id="task_id" value="<?=$task['id']; ?>">
                     <button type="submit" style="background-color: #FFF;"><img src="<?=IMAGES_URL;?>/trash.png" width="15"></button>
                     </form>
                 </div>
             </div>
             <?php endforeach; ?>
+            <?php endif;?>
     </div>
 </div>

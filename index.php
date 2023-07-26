@@ -11,9 +11,9 @@ $router = new Router(APP_URL);
 
 $router->namespace("App\Controllers\Web");
 
-$router->get("/teste", "LoggoutController:loggout");
-
 $router->get("/", "HomeController:index");
+
+$router->get("/configuracoes", "ConfigurationController:configuration");
 
 $router->get("/cadastro", "RegisterUserController:showForm");
 $router->post("/cadastro", "RegisterUserController:register");

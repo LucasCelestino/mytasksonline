@@ -17,6 +17,7 @@
     <div class="welcome-wrapper" style="padding: 15px 15px;">
         <p>Bem-vindo, Lucas Celestino.</p>
         <p>De começo você possui um total de 3 tarefas e anotações (somadas) disponiveis para serem cadastradas.</p>
+        <p>Tarefas disponiveis são recarregadas todos os dias.</p>
         <p>Ao concluir tarefas e anotações você ganha experiência que te ajuda a subir de nível.</p>
         <p>A cada 5 níveis você ganha mais 2 tarefas e anotações (somadas).</p>
         <p>Para saber quantas tarefas ou anotações disponiveis você possui, basta acessar "Minhas Tarefas" ou "Minhas Anotações" no menu.</p>

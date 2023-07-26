@@ -42,6 +42,8 @@
 <script src="<?=JS_URL."/jquery.min.js"?>"></script>
 <script src="<?=JS_URL."/ajax_login.js"?>"></script>
 <script src="<?=JS_URL."/ajax_register.js"?>"></script>
+<script src="<?=JS_URL."/ajax_complete_task.js"?>"></script>
+<script src="<?=JS_URL."/ajax_delete_task.js"?>"></script>
 <script src="<?=JS_URL."/ajax_task.js"?>"></script>
 </body>
 </html>
