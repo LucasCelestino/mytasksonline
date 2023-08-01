@@ -41,6 +41,7 @@ $router->get("/minhas-anotacoes", "NoteController:myNotes");
 
 $router->post("/concluir-tarefa", "TaskController:completeTask");
 $router->post("/excluir-tarefa", "TaskController:deleteTask");
+$router->post("/excluir-anotacao", "NoteController:deleteNote");
 
 $router->get("/perfil", "ProfileController:index");
 

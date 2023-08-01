@@ -106,12 +106,48 @@ class NoteController extends Controller
 
         $note_deleted = 0;
 
-        if($noteModel->findAllByUserIdAndStatus($user_id, 2) != null)
+        if($noteModel->findAllByUserIdAndStatus($user_id, 1) != null)
         {
-            foreach ($noteModel->findAllByUserIdAndStatus($user_id, 2) as $key => $value)
+            foreach ($noteModel->findAllByUserIdAndStatus($user_id, 1) as $key => $value)
             {
                 $note_deleted++;
             }
         }
+
+        $this->data['available_tasks_notes'] = $availableTasksNotes;
+        $this->data['note_deleted'] = $note_deleted;
+        $this->data['note_total'] = count((array)$noteModel->findAllByUserId($user_id));
+        $this->data['notes'] = $noteModel->findAllByUserIdAndStatus($user_id, 0);
+
+        if(isset($this->data['notes']) && !empty($this->data['notes']))
+        {
+            for ($i=0; $i < count($this->data['notes']) ; $i++)
+            {
+                array_push($this->data['notes'][$i], $categoryModel->load($this->data['notes'][$i]['category_id']));
+            }
+        }
+
+        $this->render('minhas-anotacoes', '', $this->data);
+    }
+
+    public function deleteNote($request)
+    {
+        $noteModel = $this->model("NoteModel");
+
+        $user_id = $this->model("UserModel")->find($_SESSION['user_auth']->email)->id;
+
+        $note = $noteModel->findByUserIdAndTaskId($user_id, $request['note_id']);
+
+        if($note == null)
+        {
+            echo json_encode(0);
+            exit;
+        }
+
+        $note->status = 1;
+
+        $note->save();
+
+        echo json_encode(1);
     }
 }

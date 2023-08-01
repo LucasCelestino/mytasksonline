@@ -102,8 +102,6 @@ class ConfigurationUpdateController extends Controller
         {
             $data['status'] = 'error-password';
 
-            var_dump('erro');exit;
-
             $this->render('atualizar-foto', '', $data);
             exit;
         }

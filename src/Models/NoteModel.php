@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use PDO;
+
 class NoteModel extends Model
 {
     /**
@@ -88,6 +90,18 @@ class NoteModel extends Model
     public function findAllByCategoryId(int $category_id, string $columns = '*')
     {
         $find = $this->read("SELECT {$columns} FROM ".self::$entity." WHERE category_id = :category_id", "category_id={$category_id}");
+
+        if($this->fail() || !$find->rowCount())
+        {
+            return null;
+        }
+
+        return $find->fetchObject(__CLASS__);
+    }
+
+    public function findByUserIdAndTaskId(int $user_id, int $id, string $columns = '*')
+    {
+        $find = $this->read("SELECT {$columns} FROM ".self::$entity." WHERE user_id = :user_id AND id = :id", "user_id={$user_id}&id={$id}");
 
         if($this->fail() || !$find->rowCount())
         {

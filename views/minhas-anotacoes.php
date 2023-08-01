@@ -1,9 +1,12 @@
 <?php $this->layout('layout/template_site', ['title' => 'Minhas Anotações']) ?>
 <div class="content-wrapper-home" style="margin-bottom: 20px; padding-bottom:20px;">
     <header class="header-home">
-        <div class="logo">
-            <img src="assets/images/to-do-list.png" width="25">
-            <p>Minhas Anotações</p>
+    <div class="logo">
+            <img src="<?=IMAGES_URL;?>/to-do-list.png" width="25">
+            <p style="margin-right:10px;">Minhas Anotações</p>
+            <div id="gif-wrapper" style="height:25px; display:none;">
+            <img id="gif-item" src="http://localhost/tasks-online/public/assets/images/2.gif" width="30" style="margin:auto; display:block;">
+            </div>
         </div>
         <div class="menu">
             <ul style="display: flex;">
@@ -17,52 +20,37 @@
     </header>
     <div class="tasks-status-wrapper">
         <div class="status">
-            <p class="completed">Total de Anotações Cadastradas: 0</p>
+            <p class="completed">Total de Anotações Cadastradas: <?=$note_total;?></p>
+            <p class="deleted">Tarefas Excluidas: <?=$note_deleted;?></p>
         </div>
-        <p class="available-tasks">Anotações Disponíveis: 5</p>
+        <?php if($available_tasks_notes->available != 0): ?>
+            <p class="available-tasks">Anotações Disponíveis: <?=$available_tasks_notes->available;?></p>
+        <?php else: ?>
+            <p class="available-tasks">Anotações Disponíveis: 0</p>
+        <?php endif; ?>
     </div>
     <div class="tasks-wrapper" style="max-height:400px !important; height:100% !important;">
+        <?php if(isset($notes) && !empty($notes)): ?>
+        <?php foreach ($notes as $note): ?>
         <div class="item">
             <div class="title">
-                <p>A história dos computadores</p>
+                <p><?=$note['title'] ?></p>
                 <div class="category-item">
-                    <p>Categoria: Trabalho</p>
+                    <p style="margin-bottom:10px;">Categoria: <?=$note[0]->title ?></p>
                 </div>
                 <div class="dates">
-                    <p>Adicionado em: 20/05/2023</p>
+                    <p>Adicionado em: <?=$note['created_at'] ?></p>
                 </div>
             </div>
-            <div class="actions">
-                <a href="#" class="btn-task">Exibir</a>
+            <div class="actions" style="display:flex;">
+                <a href="<?=APP_URL?>/anotacao/<?=$note['id']?>" style="margin-right:10px;" class="btn-task">Exibir</a>
+                <form action="<?=APP_URL?>/excluir-anotacao" id="form_delete_note" method="post">
+                    <input type="hidden" name="note_id" id="note_id" value="<?=$note['id']; ?>">
+                    <button type="submit" style="background-color: #d82b00;">Excluir</button>
+                </form>
             </div>
         </div>
-        <div class="item">
-            <div class="title">
-                <p>A história dos computadores</p>
-                <div class="category-item">
-                    <p>Categoria: Trabalho</p>
-                </div>
-                <div class="dates">
-                    <p>Adicionado em: 20/05/2023</p>
-                </div>
-            </div>
-            <div class="actions">
-                <a href="#" class="btn-task">Exibir</a>
-            </div>
-        </div>
-        <div class="item">
-            <div class="title">
-                <p>A história dos computadores</p>
-                <div class="category-item">
-                    <p>Categoria: Trabalho</p>
-                </div>
-                <div class="dates">
-                    <p>Adicionado em: 20/05/2023</p>
-                </div>
-            </div>
-            <div class="actions">
-                <a href="#" class="btn-task">Exibir</a>
-            </div>
-        </div>
+        <?php endforeach; ?>
+        <?php endif;?>
     </div>
 </div>

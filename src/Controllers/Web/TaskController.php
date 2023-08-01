@@ -122,7 +122,7 @@ class TaskController extends Controller
         $this->data['available_tasks_notes'] = $availableTasksNotes;
         $this->data['task_in_progress'] = $task_in_progress;
         $this->data['task_completed'] = $task_completed;
-        $this->data['task_deleted'] = $task_deleted++;
+        $this->data['task_deleted'] = $task_deleted;
         $this->data['tasks'] = $taskModel->findAllByUserIdAndStatus($user_id, 0);
 
         if(isset($this->data['tasks']) && !empty($this->data['tasks']))

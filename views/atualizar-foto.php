@@ -26,7 +26,16 @@
                 <label for="">Confirme sua senha:</label>
                 <input type="password" name="password" id="password">
             </div>
+            <div style="display: flex; align-items:center;">
             <button class="btn-task" type="submit">Atualizar</button>
+            <?php if(isset($status)): ?>
+                <?php if($status == "error-password"): ?>
+                <p id="register-success-text" style="font-weight:normal; font-size:17px !important; margin-left:5px; color:#d82b00;">Senha incorreta, tente novamente.</p>
+                <?php elseif($status == "success"): ?>
+                    <p id="register-success-text" style="font-weight:normal; font-size:17px !important; margin-left:5px; color:#3baf79;">Foto atualizada com sucesso.</p>
+                <?php endif; ?>
+            <?php endif; ?>
+            </div>
         </form>
     </div>
 </div>

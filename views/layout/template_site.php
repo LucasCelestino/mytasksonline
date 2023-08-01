@@ -44,6 +44,7 @@
 <script src="<?=JS_URL."/ajax_register.js"?>"></script>
 <script src="<?=JS_URL."/ajax_complete_task.js"?>"></script>
 <script src="<?=JS_URL."/ajax_delete_task.js"?>"></script>
+<script src="<?=JS_URL."/ajax_delete_note.js"?>"></script>
 <script src="<?=JS_URL."/ajax_update_email.js"?>"></script>
 <script src="<?=JS_URL."/ajax_update_name.js"?>"></script>
 <script src="<?=JS_URL."/ajax_update_password.js"?>"></script>
