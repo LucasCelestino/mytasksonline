@@ -16,16 +16,22 @@
         </div>
     </header>
     <div class="form-update-configuration-wrapper" style="padding: 15px 15px;">
-        <form action="" method="post">
+        <form action="<?=APP_URL?>/configuracoes/senha" method="post" id="form_update_password">
             <div class="form-group">
                 <label for="">Nova Senha:</label>
-                <input type="text" >
+                <input type="password" name="new_password" id="new_password">
             </div>
             <div class="form-group">
                 <label for="">Senha Atual:</label>
-                <input type="password">
+                <input type="password" name="password" id="password">
             </div>
-            <a href="{{url}}/tarefa/cadastro"><button class="btn-task" type="submit">Atualizar</button></a>
+            <div style="display:flex; align-items:center;">
+            <button class="btn-task" type="submit">Atualizar</button>
+            <div id="gif-wrapper" style="width:100%; height:45px; margin-bottom:5px; display:none;">
+            <img id="gif-item" src="http://localhost/tasks-online/public/assets/images/2.gif" width="35" style="margin-top:8px; margin-left:5px;">
+            </div>
+            <p id="register-success-text" style="display: none; font-weight:normal; font-size:17px !important; margin-left:5px;"></p>
+            </div>
         </form>
     </div>
 </div>

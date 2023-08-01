@@ -16,17 +16,17 @@
         </div>
     </header>
     <div class="form-update-configuration-wrapper" style="padding: 15px 15px;">
-        <form action="" method="post">
+        <form action="<?=APP_URL?>/configuracoes/foto" method="post" id="form_update_photo" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="">Escolha sua nova foto de perfil:</label>
-                <input type="file" name="" id="">
+                <input type="file" name="user_photo" id="user_photo">
                 <small>Formatos permitidos: JPG,PNG,JPEG</small>
             </div>
             <div class="form-group">
                 <label for="">Confirme sua senha:</label>
-                <input type="password">
+                <input type="password" name="password" id="password">
             </div>
-            <a href="{{url}}/tarefa/cadastro"><button class="btn-task" type="submit">Atualizar</button></a>
+            <button class="btn-task" type="submit">Atualizar</button>
         </form>
     </div>
 </div>

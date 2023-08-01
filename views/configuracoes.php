@@ -17,10 +17,10 @@
     </header>
     <div class="configuration-wrapper" style="padding: 15px 15px;">
         <div class="itens-wrapper">
-            <button>Atualizar Nome</button>
-            <button>Atualizar Email</button>
-            <button>Atualizar Senha</button>
-            <button>Atualizar Foto</button>
+            <a href="<?=APP_URL?>/configuracoes/nome"><button>Atualizar Nome</button></a>
+            <a href="<?=APP_URL?>/configuracoes/email"><button>Atualizar Email</button></a>
+            <a href="<?=APP_URL?>/configuracoes/senha"><button>Atualizar Senha</button></a>
+            <a href="<?=APP_URL?>/configuracoes/foto"><button>Atualizar Foto</button></a>
         </div>
     </div>
 </div>

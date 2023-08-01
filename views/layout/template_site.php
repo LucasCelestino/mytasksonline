@@ -32,10 +32,10 @@
     <a href="<?=APP_URL?>/adicionar-tarefa"><button class="btn-task" style="margin-right: 10px;">Adicionar Tarefa</button></a>
     <a href="{{url}}/tarefa/cadastro"><button class="btn-task">Adicionar Anotação</button></a>
     <?php if(isset($_SESSION['user_auth']->picture_url)): ?>
-    <div style="background-image:url('assets/images/ee48d3d2-bf27-49bf-8b0d-ac2f41206be0.jpg'); background-size:cover; margin-left:10px; width: 35px; height:35px; border-radius:50%;"></div>
+    <div style="background-image:url(<?=IMAGES_URL."/".$_SESSION['user_auth']->picture_url;?>); background-size:cover; margin-left:10px; width: 35px; height:35px; border-radius:50%;"></div>
     <?php endif; ?>
     <p style="margin-left: 5px; color:#FFF;"><?=$_SESSION['user_auth']->name; ?></p>
-    <p style="margin-left: 5px; color:#FFF; font-weight:bold;">Nível 0</p>
+    <p style="margin-left: 5px; color:#FFF; font-weight:bold;">Nível <?=$_SESSION['user_auth']->user_level;?></p>
 </div>
 <?=$this->section('content')?>
 </div>
@@ -44,6 +44,10 @@
 <script src="<?=JS_URL."/ajax_register.js"?>"></script>
 <script src="<?=JS_URL."/ajax_complete_task.js"?>"></script>
 <script src="<?=JS_URL."/ajax_delete_task.js"?>"></script>
+<script src="<?=JS_URL."/ajax_update_email.js"?>"></script>
+<script src="<?=JS_URL."/ajax_update_name.js"?>"></script>
+<script src="<?=JS_URL."/ajax_update_password.js"?>"></script>
+<script src="<?=JS_URL."/ajax_update_photo.js"?>"></script>
 <script src="<?=JS_URL."/ajax_task.js"?>"></script>
 </body>
 </html>

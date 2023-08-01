@@ -22,27 +22,27 @@ class ConfigurationController extends Controller
         $this->render('configuracoes');
     }
 
-    public function updateName()
+    public function showNameForm()
     {
         // $_SESSION['user_auth'];
-        $this->render('configuracoes');
+        $this->render('atualizar-nome');
     }
 
-    public function updateEmail()
+    public function showEmailForm()
     {
         // $_SESSION['user_auth'];
-        $this->render('configuracoes');
+        $this->render('atualizar-email');
     }
 
-    public function updatePassword()
+    public function showPasswordForm()
     {
         // $_SESSION['user_auth'];
-        $this->render('configuracoes');
+        $this->render('atualizar-senha');
     }
 
-    public function updatePicture()
+    public function showPictureForm()
     {
         // $_SESSION['user_auth'];
-        $this->render('configuracoes');
+        $this->render('atualizar-foto');
     }
 }

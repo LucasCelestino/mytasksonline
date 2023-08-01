@@ -5,6 +5,7 @@ namespace App\Controllers\Web;
 use App\Core\ExperienceHelper;
 use App\Core\Helpers;
 use App\Core\Session;
+use App\Core\TaskHelper;
 use App\Models\UserModel;
 
 class TaskController extends Controller
@@ -33,6 +34,7 @@ class TaskController extends Controller
     {
         $taskModel = $this->model("TaskModel");
         $availableTasksNotesModel = $this->model("AvailableTaskNoteModel");
+        $levelSystemModel = $this->model("LevelSystemModel");
         $user_id = $this->model("UserModel")->find($_SESSION['user_auth']->email)->id;
 
         if($availableTasksNotesModel->findByUserId($user_id)->available == 0)
@@ -50,6 +52,9 @@ class TaskController extends Controller
             echo json_encode(1);
             exit;
         }
+
+        $levelSystemUser = $levelSystemModel->findByUserId($user_id);
+        $experience = ExperienceHelper::setTaskReceivedExperience(intval($levelSystemUser->actual_level));
 
         $task = $taskModel->bootstrap($user_id, $category_id, $title, $public, $experience, 0);
 
@@ -136,6 +141,7 @@ class TaskController extends Controller
     {
         $taskModel = $this->model("TaskModel");
         $levelSystemModel = $this->model("LevelSystemModel");
+        $availableTasksNotesModel = $this->model("AvailableTaskNoteModel");
 
         $user_id = $this->model("UserModel")->find($_SESSION['user_auth']->email)->id;
 
@@ -160,6 +166,15 @@ class TaskController extends Controller
             $levelSystemUser,
             $experience
         );
+
+        $availableTasksNotes = $availableTasksNotesModel->findAvailableTasksByUserId($user_id);
+
+        TaskHelper::upgradeAvailableTasks($availableTasksNotes, $levelSystemUser);
+
+        if($levelSystemUser->actual_level > $_SESSION['user_auth']->user_level)
+        {
+            $_SESSION['user_auth']->user_level = $levelSystemUser->actual_level;
+        }
 
         echo json_encode(1);
     }

@@ -26,6 +26,7 @@ class LoginUserController extends Controller
     public function login($request)
     {
         $userModel = $this->model("UserModel");
+        $levelSystemModel = $this->model("LevelSystemModel");
 
         $user = $userModel->find($request['email']);
 
@@ -41,12 +42,15 @@ class LoginUserController extends Controller
             exit;
         }
 
+        $levelSystemUser = $levelSystemModel->findByUserId($user->id);
+
         $session_user = [];
 
         $session_user['name'] = $user->name;
         $session_user['email'] = $user->email;
         $session_user['picture_url'] = $user->picture_url;
         $session_user['slug'] = $user->slug;
+        $session_user['user_level'] = $levelSystemUser->actual_level;
 
         Session::set('user_auth',(object) $session_user);
         echo json_encode(2);

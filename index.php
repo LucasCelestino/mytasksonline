@@ -14,6 +14,15 @@ $router->namespace("App\Controllers\Web");
 $router->get("/", "HomeController:index");
 
 $router->get("/configuracoes", "ConfigurationController:configuration");
+$router->get("/configuracoes/nome", "ConfigurationController:showNameForm");
+$router->get("/configuracoes/email", "ConfigurationController:showEmailForm");
+$router->get("/configuracoes/senha", "ConfigurationController:showPasswordForm");
+$router->get("/configuracoes/foto", "ConfigurationController:showPictureForm");
+
+$router->post("/configuracoes/nome", "ConfigurationUpdateController:updateName");
+$router->post("/configuracoes/email", "ConfigurationUpdateController:updateEmail");
+$router->post("/configuracoes/senha", "ConfigurationUpdateController:updatePassword");
+$router->post("/configuracoes/foto", "ConfigurationUpdateController:updatePicture");
 
 $router->get("/cadastro", "RegisterUserController:showForm");
 $router->post("/cadastro", "RegisterUserController:register");

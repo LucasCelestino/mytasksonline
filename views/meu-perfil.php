@@ -17,7 +17,7 @@
     </header>
     <div class="profile-wrapper">
         <div class="header">
-            <div class="img" style="background-image: url('assets/images/ee48d3d2-bf27-49bf-8b0d-ac2f41206be0.jpg');">
+            <div class="img" style="background-image:url(<?=IMAGES_URL."/".$_SESSION['user_auth']->picture_url;?>);">
             </div>
             <div class="nivel" style="margin-bottom: 10px;">Lucas Celestino</div>
             <div class="nivel" style="margin-bottom: 10px;">Nível 50</div>

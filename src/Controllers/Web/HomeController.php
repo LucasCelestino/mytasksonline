@@ -5,6 +5,7 @@ namespace App\Controllers\Web;
 use App\Core\Helpers;
 use App\Models\UserModel;
 use App\Core\Session;
+use App\Core\TaskHelper;
 
 class HomeController extends Controller
 {
@@ -19,7 +20,6 @@ class HomeController extends Controller
 
     public function index()
     {
-        // $_SESSION['user_auth'];
         $this->render('home');
     }
 
