@@ -16,36 +16,38 @@
         </div>
     </header>
     <div class="form-add-task-wrapper" style="padding: 15px 15px;">
-        <form action="" method="post">
+        <form action="<?=APP_URL?>/adicionar-anotacao" method="post" id="form_note">
             <div class="form-group">
                 <label for="">Título da Anotação:</label>
-                <input type="text" >
+                <input type="text" name="note-title" id="note-title">
             </div>
             <div class="form-group">
                 <label for="">Categoria da Anotação:</label>
-                <select name="" id="">
+                <select name="note-category" id="note-category">
                     <option value="0">-</option>
-                    <option value="1">Casa</option>
-                    <option value="1">Estudo</option>
-                    <option value="1">Trabalho</option>
-                    <option value="1">Pessoal</option>
-                    <option value="1">Familia</option>
+                    <?php foreach ($categories as $category): ?>
+                        <option value="<?=$category->id?>"><?=$category->title?></option>
+                    <?php endforeach; ?>
                 </select>
             </div>
             <div class="form-group">
                 <label for="">Anotação:</label>
-                <textarea name="" id="" cols="30" rows="10"></textarea>
+                <textarea name="anotation-text" id="anotation-text" cols="30" rows="10"></textarea>
             </div>
             <div class="form-group">
                 <label for="">Anotação Publica:</label>
-                <select name="" id="">
+                <select name="note-public" id="note-public">
                     <option value="0">-</option>
                     <option value="1">Sim</option>
                     <option value="2">Não</option>
                 </select>
                 <small>Anotações públicas aparecem no seu perfil e podem ser visualizadas por outros usuários.</small>
             </div>
-            <a href="{{url}}/tarefa/cadastro"><button class="btn-task" type="submit">Adicionar</button></a>
+            <button class="btn-task" type="submit">Adicionar</button>
+            <div id="gif-wrapper" style="width:100%; height:45px; margin-bottom:5px; display:none;">
+            <img id="gif-item" src="http://localhost/tasks-online/public/assets/images/2.gif" width="45" style="margin:auto; display:block;">
+            </div>
+            <p id="register-success-text" style="display: none; font-weight:normal; font-size:17px !important; text-align:center;"></p>
         </form>
     </div>
 </div>

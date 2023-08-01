@@ -30,7 +30,7 @@
 </div>
 <div class="add-task-wrapper">
     <a href="<?=APP_URL?>/adicionar-tarefa"><button class="btn-task" style="margin-right: 10px;">Adicionar Tarefa</button></a>
-    <a href="{{url}}/tarefa/cadastro"><button class="btn-task">Adicionar Anotação</button></a>
+    <a href="<?=APP_URL?>/adicionar-anotacao"><button class="btn-task">Adicionar Anotação</button></a>
     <?php if(isset($_SESSION['user_auth']->picture_url)): ?>
     <div style="background-image:url(<?=IMAGES_URL."/".$_SESSION['user_auth']->picture_url;?>); background-size:cover; margin-left:10px; width: 35px; height:35px; border-radius:50%;"></div>
     <?php endif; ?>
@@ -49,5 +49,6 @@
 <script src="<?=JS_URL."/ajax_update_password.js"?>"></script>
 <script src="<?=JS_URL."/ajax_update_photo.js"?>"></script>
 <script src="<?=JS_URL."/ajax_task.js"?>"></script>
+<script src="<?=JS_URL."/ajax_note.js"?>"></script>
 </body>
 </html>

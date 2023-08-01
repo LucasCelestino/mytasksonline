@@ -54,7 +54,7 @@ class TaskController extends Controller
         }
 
         $levelSystemUser = $levelSystemModel->findByUserId($user_id);
-        $experience = ExperienceHelper::setTaskReceivedExperience(intval($levelSystemUser->actual_level));
+        $experience = ExperienceHelper::setReceivedExperience(intval($levelSystemUser->actual_level));
 
         $task = $taskModel->bootstrap($user_id, $category_id, $title, $public, $experience, 0);
 
@@ -158,7 +158,7 @@ class TaskController extends Controller
         $task->save();
 
         $levelSystemUser = $levelSystemModel->findByUserId($user_id);
-        $experience = ExperienceHelper::setTaskReceivedExperience(intval($levelSystemUser->actual_level));
+        $experience = ExperienceHelper::setReceivedExperience(intval($levelSystemUser->actual_level));
 
         ExperienceHelper::upForNextLevel(
             $levelSystemUser->experience_bar,

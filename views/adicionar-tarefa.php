@@ -39,7 +39,7 @@
                 </select>
                 <small>Tarefas públicas aparecem no seu perfil e podem ser visualizadas por outros usuários.</small>
             </div>
-            <a href="{{url}}/tarefa/cadastro"><button class="btn-task" type="submit">Adicionar</button></a>
+            <button class="btn-task" type="submit">Adicionar</button>
             <div id="gif-wrapper" style="width:100%; height:45px; margin-bottom:5px; display:none;">
             <img id="gif-item" src="http://localhost/tasks-online/public/assets/images/2.gif" width="45" style="margin:auto; display:block;">
             </div>

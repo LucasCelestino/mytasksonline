@@ -33,7 +33,11 @@ $router->post("/login", "LoginUserController:login");
 $router->get("/adicionar-tarefa", "TaskController:showForm");
 $router->post("/adicionar-tarefa", "TaskController:addTask");
 
+$router->get("/adicionar-anotacao", "NoteController:showForm");
+$router->post("/adicionar-anotacao", "NoteController:addNote");
+
 $router->get("/minhas-tarefas", "TaskController:myTasks");
+$router->get("/minhas-anotacoes", "NoteController:myNotes");
 
 $router->post("/concluir-tarefa", "TaskController:completeTask");
 $router->post("/excluir-tarefa", "TaskController:deleteTask");

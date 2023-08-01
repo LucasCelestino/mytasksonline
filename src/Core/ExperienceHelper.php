@@ -15,7 +15,7 @@ class ExperienceHelper
     private static int $midLevelExperienceBar = 300;
     private static int $highLevelExperienceBar = 500;
 
-    public static function setTaskReceivedExperience($actual_nv)
+    public static function setReceivedExperience($actual_nv)
     {
 
         switch ($actual_nv)

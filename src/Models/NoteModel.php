@@ -15,21 +15,19 @@ class NoteModel extends Model
     private static string $entity = 'notes';
 
     /**
-     * @param String $user_id
-     * @param String $category_id
-     * @param String $title
-     * @param String $note_text
-     * @param int $public
+
      *
      * @return NoteModel
      */
-    public function bootstrap(String $user_id, String $category_id, String $title, String $note_text, String $public): NoteModel
+    public function bootstrap(String $user_id, String $category_id, String $title, String $note_text,  $public,  $experience,  $status): NoteModel
     {
         $this->user_id = $user_id;
         $this->category_id = $category_id;
         $this->title = $title;
         $this->note_text = $note_text;
         $this->public = $public;
+        $this->experience = $experience;
+        $this->status = $status;
         return $this;
     }
 
@@ -67,6 +65,18 @@ class NoteModel extends Model
         }
 
         return $find->fetchObject(__CLASS__);
+    }
+
+    public function findAllByUserIdAndStatus(int $user_id, int $status, string $columns = '*')
+    {
+        $find = $this->read("SELECT {$columns} FROM ".self::$entity." WHERE user_id = :user_id AND status = :status", "user_id={$user_id}&status={$status}");
+
+        if($this->fail() || !$find->rowCount())
+        {
+            return null;
+        }
+
+        return $find->fetchAll(PDO::FETCH_ASSOC);
     }
 
     /**
@@ -113,7 +123,7 @@ class NoteModel extends Model
         // CREATE NOTE
         else
         {
-            $taskId = $this->create("INSERT INTO ".self::$entity." (user_id,category_id,title,note_text,public) VALUES (:user_id,:category_id,:title,:note_text,:public)", $this->safe());
+            $noteId = $this->create("INSERT INTO ".self::$entity." (user_id,category_id,title,note_text,public,experience,status) VALUES (:user_id,:category_id,:title,:note_text,:public,:experience,:status)", $this->safe());
         }
 
         // $this->data = $this->read("SELECT * FROM ".self::$entity." WHERE id = :id", "id={$userId}")->fetchObject(__CLASS__);
@@ -140,7 +150,7 @@ class NoteModel extends Model
      */
     public function required(): bool
     {
-        if(!$this->user_id || !$this->category_id || !$this->title || !$this->note_text || !$this->public)
+        if(!$this->user_id || !$this->category_id || !$this->title || !$this->note_text)
         {
             return false;
         }
