@@ -8,6 +8,8 @@ use App\Core\Session;
 
 class ProfileController extends Controller
 {
+    private array $data = [];
+
     public function __construct()
     {
         if(!Session::has('user_auth'))
@@ -17,9 +19,27 @@ class ProfileController extends Controller
         }
     }
 
-    public function index()
+    public function myProfile($request)
     {
+        $userModel = $this->model("UserModel");
+        $taskModel = $this->model("TaskModel");
+        $noteModel = $this->model("NoteModel");
+        $levelSystemModel = $this->model("LevelSystemModel");
+
+        $slug = filter_var($_GET['id'], FILTER_SANITIZE_SPECIAL_CHARS);
+
+        $user = $userModel->findBySlug($slug);
+
+        $publicTasks = $taskModel->findByUserIdAndPublic($user->id, 1);
+        $publicNotes = $noteModel->findByUserIdAndPublic($user->id, 1);
+        $levelSystem = $levelSystemModel->findByUserId($user->id);
+
+        $this->data['user'] = $user;
+        $this->data['tasks'] = $publicTasks;
+        $this->data['notes'] = $publicNotes;
+        $this->data['level_system'] = $levelSystem;
+
         // $_SESSION['user_auth'];
-        $this->render('meu-perfil');
+        $this->render('meu-perfil', '', $this->data);
     }
 }

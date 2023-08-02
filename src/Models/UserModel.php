@@ -69,6 +69,18 @@ class UserModel extends Model
         return $find->fetchObject(__CLASS__);
     }
 
+    public function findBySlug(string $slug, string $columns = '*')
+    {
+        $find = $this->read("SELECT {$columns} FROM ".self::$entity." WHERE slug = :slug", "slug={$slug}");
+
+        if($this->fail() || !$find->rowCount())
+        {
+            return null;
+        }
+
+        return $find->fetchObject(__CLASS__);
+    }
+
     /**
      * @param int $limit
      * @param int $offset

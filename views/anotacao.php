@@ -3,7 +3,8 @@
     <header class="header-home">
     <div class="logo">
             <img src="<?=IMAGES_URL;?>/to-do-list.png" width="25">
-            <p style="margin-right:10px;">Minhas Anotações</p>
+            <p style="margin-right:10px;"><?=$note->title;?></p>
+            <a href="<?=APP_URL?>/minhas-anotacoes" style="text-decoration:none; font-size:13px;">Voltar</a>
             <div id="gif-wrapper" style="height:25px; display:none;">
             <img id="gif-item" src="http://localhost/tasks-online/public/assets/images/2.gif" width="30" style="margin:auto; display:block;">
             </div>
@@ -18,39 +19,17 @@
             </ul>
         </div>
     </header>
-    <div class="tasks-status-wrapper">
-        <div class="status">
-            <p class="completed">Total de Anotações Cadastradas: <?=$note_total;?></p>
-            <p class="deleted">Anotações Excluidas: <?=$note_deleted;?></p>
-        </div>
-        <?php if($available_tasks_notes->available != 0): ?>
-            <p class="available-tasks">Anotações Disponíveis: <?=$available_tasks_notes->available;?></p>
-        <?php else: ?>
-            <p class="available-tasks">Anotações Disponíveis: 0</p>
-        <?php endif; ?>
-    </div>
-    <div class="tasks-wrapper" style="max-height:400px !important; height:100% !important;">
-        <?php if(isset($notes) && !empty($notes)): ?>
-        <?php foreach ($notes as $note): ?>
+    <div class="tasks-wrapper" style="max-height:500px !important; height:100% !important;">
         <div class="item">
-            <div class="title">
-                <p><?=$note['title'] ?></p>
+            <div class="content">
+                <p style="font-size:13px; margin-bottom:10px;"><?=$note->note_text;?></p>
                 <div class="category-item">
-                    <p style="margin-bottom:10px;">Categoria: <?=$note[0]->title ?></p>
+                    <p style="margin-bottom:10px; font-size:13px; font-weight:bold;">Categoria: <?=$category->title;?></p>
                 </div>
                 <div class="dates">
-                    <p>Adicionado em: <?=date('d/m/Y', strtotime($note['created_at']));?></p>
+                    <p style="font-size:12px; font-weight:bold;">Adicionado em: <?=date('d/m/Y', strtotime($note->created_at));?></p>
                 </div>
             </div>
-            <div class="actions" style="display:flex;">
-                <a href="<?=APP_URL?>/anotacao/<?=$note['id']?>" style="margin-right:10px;" class="btn-task">Exibir</a>
-                <form action="<?=APP_URL?>/excluir-anotacao" id="form_delete_note" method="post">
-                    <input type="hidden" name="note_id" id="note_id" value="<?=$note['id']; ?>">
-                    <button type="submit" style="background-color: #d82b00;">Excluir</button>
-                </form>
-            </div>
         </div>
-        <?php endforeach; ?>
-        <?php endif;?>
     </div>
 </div>

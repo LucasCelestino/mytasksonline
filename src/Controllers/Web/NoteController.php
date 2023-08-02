@@ -136,7 +136,7 @@ class NoteController extends Controller
 
         $user_id = $this->model("UserModel")->find($_SESSION['user_auth']->email)->id;
 
-        $note = $noteModel->findByUserIdAndTaskId($user_id, $request['note_id']);
+        $note = $noteModel->findByUserIdAndNoteId($user_id, $request['note_id']);
 
         if($note == null)
         {
@@ -149,5 +149,46 @@ class NoteController extends Controller
         $note->save();
 
         echo json_encode(1);
+    }
+
+    public function showNote($request)
+    {
+        $noteModel = $this->model("NoteModel");
+        $categoryModel = $this->model("CategoryModel");
+
+        $user_id = $this->model("UserModel")->find($_SESSION['user_auth']->email)->id;
+
+        $note = $noteModel->load($request['id']);
+
+        if($note == null)
+        {
+            Helpers::redirect(APP_URL."/minhas-anotacoes");
+        }
+
+        if($note->user_id == $user_id)
+        {
+            $this->data['note'] = $note;
+
+            $category = $categoryModel->load($this->data['note']->category_id);
+
+            $this->data['category'] = $category;
+        }
+        else
+        {
+            $note = $noteModel->findByIdAndPublic($note->id, 1);
+
+            if($note == null)
+            {
+                Helpers::redirect(APP_URL."/minhas-anotacoes");
+            }
+
+            $this->data['note'] = $note;
+
+            $category = $categoryModel->load($this->data['note']->category_id);
+
+            $this->data['category'] = $category;
+        }
+
+        $this->render("anotacao", '', $this->data);
     }
 }

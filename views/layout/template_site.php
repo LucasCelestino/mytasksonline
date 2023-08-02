@@ -24,7 +24,7 @@
     <form action="" method="get">
         <div class="form-group" style="display: flex;">
             <input class="search_input" type="text" name="" id="" placeholder="Pesquisar Usuário...">
-            <button style="border: none; background-color:#6200EA; display:flex;"><img src="assets/images/search.png"></button>
+            <button style="border: none; background-color:#6200EA; display:flex;"><img src="<?=IMAGES_URL;?>/search.png"></button>
         </div>
     </form>
 </div>

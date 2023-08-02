@@ -57,10 +57,13 @@ class LoginUserController extends Controller
         exit;
     }
 
-    public function loggout()
+    public function sair()
     {
-        Session::destroy();
-        Helpers::redirect(APP_URL."/login");
+        echo 'oi';exit;
+        Session::unset('user_auth');
+
+        Helpers::redirect(APP_URL."/home");
+
         exit;
     }
 }

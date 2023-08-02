@@ -85,6 +85,18 @@ class TaskModel extends Model
         return $find->fetchObject(__CLASS__);
     }
 
+    public function findByUserIdAndPublic(int $user_id, int $public, string $columns = '*')
+    {
+        $find = $this->read("SELECT {$columns} FROM ".self::$entity." WHERE user_id = :user_id AND public = :public ORDER BY id DESC LIMIT 3", "user_id={$user_id}&public={$public}");
+
+        if($this->fail() || !$find->rowCount())
+        {
+            return null;
+        }
+
+        return $find->fetchAll(PDO::FETCH_CLASS);
+    }
+
     /**
      * @param int $category_id
      * @param string $columns

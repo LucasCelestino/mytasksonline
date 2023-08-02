@@ -12,6 +12,7 @@ $router = new Router(APP_URL);
 $router->namespace("App\Controllers\Web");
 
 $router->get("/", "HomeController:index");
+$router->get("/home", "HomeController:index");
 
 $router->get("/configuracoes", "ConfigurationController:configuration");
 $router->get("/configuracoes/nome", "ConfigurationController:showNameForm");
@@ -30,6 +31,8 @@ $router->post("/cadastro", "RegisterUserController:register");
 $router->get("/login", "LoginUserController:showForm");
 $router->post("/login", "LoginUserController:login");
 
+$router->get("/sair", "LoggoutUserController:sair");
+
 $router->get("/adicionar-tarefa", "TaskController:showForm");
 $router->post("/adicionar-tarefa", "TaskController:addTask");
 
@@ -43,7 +46,9 @@ $router->post("/concluir-tarefa", "TaskController:completeTask");
 $router->post("/excluir-tarefa", "TaskController:deleteTask");
 $router->post("/excluir-anotacao", "NoteController:deleteNote");
 
-$router->get("/perfil", "ProfileController:index");
+$router->get("/anotacao/{id}", "NoteController:showNote");
+
+$router->get("/perfil", "ProfileController:myProfile");
 
 // $router->get("/users/{id}", "UserController:show");
 // $router->put("/users/update", "UserController:update");
