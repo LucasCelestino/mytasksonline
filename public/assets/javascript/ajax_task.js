@@ -6,7 +6,7 @@ $('#form_task').submit(function (e) {
     var public = $('#task-public').val();
 
     $.ajax({
-        url:'http://localhost/tasks-online/adicionar-tarefa',
+        url:app_url+'/adicionar-tarefa',
         method:'POST',
         data: {title: title, category: category, public: public},
         dataType: 'json',

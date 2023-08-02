@@ -7,7 +7,7 @@ $('#form_note').submit(function (e) {
     var public = $('#note-public').val();
 
     $.ajax({
-        url:'http://localhost/tasks-online/adicionar-anotacao',
+        url:app_url+'/adicionar-anotacao',
         method:'POST',
         data: {title: title, category: category, anotation_text: anotation_text,public: public},
         dataType: 'json',

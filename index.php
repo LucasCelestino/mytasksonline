@@ -48,6 +48,9 @@ $router->post("/excluir-anotacao", "NoteController:deleteNote");
 
 $router->get("/anotacao/{id}", "NoteController:showNote");
 
+
+$router->get("/usuarios", "SearchController:search");
+
 $router->get("/perfil", "ProfileController:myProfile");
 
 // $router->get("/users/{id}", "UserController:show");

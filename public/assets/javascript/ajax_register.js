@@ -10,7 +10,7 @@ $('#form_register_user').submit(function (e) {
     var photo = $('#user_photo').val();
 
     $.ajax({
-        url:'http://localhost/tasks-online/cadastro',
+        url:app_url+'/cadastro',
         method:'POST',
         data: {name: name, email: email, password: password, confirmPassword: confirmPassword},
         dataType: 'json',

@@ -1,0 +1,1 @@
+var app_url = 'http://localhost/tasks-online';

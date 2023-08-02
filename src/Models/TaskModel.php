@@ -117,7 +117,7 @@ class TaskModel extends Model
 
     public function findAllByUserId(int $user_id, string $columns = '*')
     {
-        $find = $this->read("SELECT {$columns} FROM tasks_status INNER JOIN tasks ON tasks.user_id = :user_id", "user_id={$user_id}");
+        $find = $this->read("SELECT {$columns} FROM ".self::$entity." WHERE user_id = :user_id", "user_id={$user_id}");
 
         if($this->fail() || !$find->rowCount())
         {

@@ -1,5 +1,3 @@
-var app_url = 'http://localhost/tasks-online';
-
 $('#form_delete_task').submit(function (e) {
     e.preventDefault();
 

@@ -5,7 +5,7 @@ $('#form_update_name').submit(function (e) {
     var password = $('#password').val();
 
     $.ajax({
-        url:'http://localhost/tasks-online/configuracoes/nome',
+        url:app_url+'/configuracoes/nome',
         method:'POST',
         data: {name: name, password: password},
         dataType: 'json',

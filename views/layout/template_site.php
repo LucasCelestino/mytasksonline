@@ -21,9 +21,9 @@
 <body class="body-container">
 <div class="main-container-content">
 <div style="margin-bottom:50px;">
-    <form action="" method="get">
+    <form action="<?=APP_URL?>/usuarios" method="get">
         <div class="form-group" style="display: flex;">
-            <input class="search_input" type="text" name="" id="" placeholder="Pesquisar Usuário...">
+            <input class="search_input" type="text" name="search" id="search" placeholder="Pesquisar Usuário...">
             <button style="border: none; background-color:#6200EA; display:flex;"><img src="<?=IMAGES_URL;?>/search.png"></button>
         </div>
     </form>

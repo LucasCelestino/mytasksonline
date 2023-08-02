@@ -1,12 +1,10 @@
-var app_url = 'http://localhost/tasks-online';
-
 $('#form_complete_task').submit(function (e) {
     e.preventDefault();
 
     var task_id = $('#task_id').val();
 
     $.ajax({
-        url:'http://localhost/tasks-online/concluir-tarefa',
+        url:app_url+'/concluir-tarefa',
         method:'POST',
         data: {task_id: task_id},
         dataType: 'json',

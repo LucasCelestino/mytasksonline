@@ -1,5 +1,3 @@
-var app_url = 'http://localhost/tasks-online';
-
 $('#form_login_user').submit(function (e) {
     e.preventDefault();
 
@@ -7,7 +5,7 @@ $('#form_login_user').submit(function (e) {
     var password = $('#password').val();
 
     $.ajax({
-        url:'http://localhost/tasks-online/login',
+        url:app_url+'/login',
         method:'POST',
         data: {email: email, password: password},
         dataType: 'json',

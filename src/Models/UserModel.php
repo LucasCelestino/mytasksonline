@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use PDO;
+
 class UserModel extends Model
 {
     /**
@@ -79,6 +81,18 @@ class UserModel extends Model
         }
 
         return $find->fetchObject(__CLASS__);
+    }
+
+    public function search(string $search, string $columns = '*')
+    {
+        $find = $this->read("SELECT {$columns} FROM ".self::$entity." WHERE name LIKE CONCAT('%', :search, '%')", "search={$search}");
+
+        if($this->fail() || !$find->rowCount())
+        {
+            return null;
+        }
+
+        return $find->fetchAll(PDO::FETCH_ASSOC);
     }
 
     /**
