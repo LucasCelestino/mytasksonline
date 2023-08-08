@@ -6,6 +6,7 @@ use App\Core\Helpers;
 use App\Models\UserModel;
 use App\Core\Session;
 use App\Core\TaskHelper;
+use App\Core\ExperienceHelper;
 
 class HomeController extends Controller
 {
@@ -16,6 +17,8 @@ class HomeController extends Controller
             Helpers::redirect(APP_URL."/login");
             exit;
         }
+
+        ExperienceHelper::setFreeAvailableTasksNotesPerDay();
     }
 
     public function index()

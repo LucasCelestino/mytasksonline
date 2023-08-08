@@ -19,6 +19,8 @@ class TaskController extends Controller
             Helpers::redirect(APP_URL."/login");
             exit;
         }
+
+        ExperienceHelper::setFreeAvailableTasksNotesPerDay();
     }
 
     public function showForm()

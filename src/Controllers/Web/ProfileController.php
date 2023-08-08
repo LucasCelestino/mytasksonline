@@ -2,6 +2,7 @@
 
 namespace App\Controllers\Web;
 
+use App\Core\ExperienceHelper;
 use App\Core\Helpers;
 use App\Models\UserModel;
 use App\Core\Session;
@@ -17,6 +18,8 @@ class ProfileController extends Controller
             Helpers::redirect(APP_URL."/login");
             exit;
         }
+
+        ExperienceHelper::setFreeAvailableTasksNotesPerDay();
     }
 
     public function myProfile($request)

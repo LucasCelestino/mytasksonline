@@ -2,6 +2,7 @@
 
 namespace App\Controllers\Web;
 
+use App\Core\ExperienceHelper;
 use App\Core\Helpers;
 use App\Core\Session;
 
@@ -14,6 +15,8 @@ class ConfigurationController extends Controller
             Helpers::redirect(APP_URL."/login");
             exit;
         }
+
+        ExperienceHelper::setFreeAvailableTasksNotesPerDay();
     }
 
     public function configuration()

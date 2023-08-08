@@ -3,7 +3,9 @@
 namespace App\Core;
 
 use App\Core\Session;
+use App\Models\AvailableTaskNoteModel;
 use App\Models\LevelSystemModel;
+use App\Models\UserModel;
 
 class ExperienceHelper
 {
@@ -74,5 +76,34 @@ class ExperienceHelper
         }
 
         $levelSystemUser->save();
+    }
+
+    public static function setFreeAvailableTasksNotesPerDay()
+    {
+        $userModel = new UserModel();
+        $availableTaskNoteModel = new AvailableTaskNoteModel();
+
+        $user = $userModel->find($_SESSION['user_auth']->email);
+
+        if($user == null)
+        {
+            return null;
+        }
+
+        $userAvailableTasksNotes = $availableTaskNoteModel->findByUserId($user->id);
+
+        $startDate = strtotime($userAvailableTasksNotes->updated_at);
+        $currentDate = strtotime(date('Y-m-d'));
+
+        if($startDate == null)
+        {
+            return null;
+        }
+
+        if($currentDate > $startDate)
+        {
+            $userAvailableTasksNotes += 3;
+            $userAvailableTasksNotes->save();
+        }
     }
 }

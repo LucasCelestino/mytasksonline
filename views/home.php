@@ -15,7 +15,7 @@
         </div>
     </header>
     <div class="welcome-wrapper" style="padding: 15px 15px;">
-        <p>Bem-vindo, Lucas Celestino.</p>
+        <p>Bem-vindo, <?=$_SESSION['user_auth']->name; ?>.</p>
         <p>De começo você possui um total de 3 tarefas e anotações (somadas) disponiveis para serem cadastradas.</p>
         <p>Tarefas disponiveis são recarregadas todos os dias.</p>
         <p>Ao concluir tarefas e anotações você ganha experiência que te ajuda a subir de nível.</p>
