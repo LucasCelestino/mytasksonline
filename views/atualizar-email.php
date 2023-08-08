@@ -1,4 +1,4 @@
-<?php $this->layout('layout/template_site', ['title' => 'Atualizar Email']) ?>
+<?php $this->layout('layout/template_site', ['title' => 'Tasks Online - Atualizar Email']) ?>
 <div class="content-wrapper-home" style="margin-bottom: 20px;">
     <header class="header-home">
         <div class="logo">

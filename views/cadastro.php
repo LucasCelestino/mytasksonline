@@ -1,4 +1,4 @@
-<?php $this->layout('layout/template', ['title' => 'Cadastro']) ?>
+<?php $this->layout('layout/template', ['title' => 'Tasks Online - Cadastro']) ?>
 <div class="content-wrapper" style="padding: 20px 35px;">
     <p>Cadastro</p>
     <form action="<?=APP_URL?>/cadastro" method="post" enctype="multipart/form-data" id="form_register_user">

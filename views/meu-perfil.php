@@ -1,4 +1,4 @@
-<?php $this->layout('layout/template_site', ['title' => 'Meu Perfil']) ?>
+<?php $this->layout('layout/template_site', ['title' => 'Tasks Online - Meu Perfil']) ?>
 <div class="content-wrapper-home" style="margin-bottom: 20px; padding-bottom:20px;">
     <header class="header-home">
         <div class="logo">

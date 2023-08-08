@@ -1,4 +1,4 @@
-<?php $this->layout('layout/template_site', ['title' => 'Adicionar Tarefa']) ?>
+<?php $this->layout('layout/template_site', ['title' => 'Tasks Online - Adicionar Tarefa']) ?>
 <div class="content-wrapper-home" style="margin-bottom: 20px;">
     <header class="header-home">
         <div class="logo">

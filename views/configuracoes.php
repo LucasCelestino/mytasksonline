@@ -1,4 +1,4 @@
-<?php $this->layout('layout/template_site', ['title' => 'Configurações']) ?>
+<?php $this->layout('layout/template_site', ['title' => 'Tasks Online - Configurações']) ?>
 <div class="content-wrapper-home" style="margin-bottom: 20px;">
     <header class="header-home">
         <div class="logo">

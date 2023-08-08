@@ -1,4 +1,4 @@
-<?php $this->layout('layout/template', ['title' => 'Login']) ?>
+<?php $this->layout('layout/template', ['title' => 'Tasks Online - Login']) ?>
 <div class="content-wrapper" style="height:300px;">
     <h1 class="title-site">Tasks Online</h1>
     <form action="<?=APP_URL?>/login" method="post" id="form_login_user">

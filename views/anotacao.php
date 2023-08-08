@@ -1,4 +1,4 @@
-<?php $this->layout('layout/template_site', ['title' => 'Minhas Anotações']) ?>
+<?php $this->layout('layout/template_site', ['title' => 'Tasks Online - '.$note->title]) ?>
 <div class="content-wrapper-home" style="margin-bottom: 20px; padding-bottom:20px;">
     <header class="header-home">
     <div class="logo">

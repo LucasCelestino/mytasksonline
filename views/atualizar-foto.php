@@ -1,4 +1,4 @@
-<?php $this->layout('layout/template_site', ['title' => 'Atualizar Foto']) ?>
+<?php $this->layout('layout/template_site', ['title' => 'Tasks Online - Atualizar Foto']) ?>
 <div class="content-wrapper-home" style="margin-bottom: 20px;">
     <header class="header-home">
         <div class="logo">
