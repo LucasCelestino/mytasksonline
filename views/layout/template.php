@@ -22,5 +22,6 @@
 <script src="<?=JS_URL."/jquery.min.js"?>"></script>
 <script src="<?=JS_URL."/ajax_login.js"?>"></script>
 <script src="<?=JS_URL."/ajax_register.js"?>"></script>
+<script src="<?=JS_URL."/configs.js"?>"></script>
 </body>
 </html>

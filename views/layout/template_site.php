@@ -51,5 +51,6 @@
 <script src="<?=JS_URL."/ajax_update_photo.js"?>"></script>
 <script src="<?=JS_URL."/ajax_task.js"?>"></script>
 <script src="<?=JS_URL."/ajax_note.js"?>"></script>
+<script src="<?=JS_URL."/configs.js"?>"></script>
 </body>
 </html>
